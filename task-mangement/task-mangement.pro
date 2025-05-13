@@ -9,11 +9,14 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    email.cpp \
     main.cpp \
     widget.cpp \
-    fun.cpp
+    fun.cpp \
+    worker.cpp
 
 HEADERS += \
+    email.h \
     widget.h \
     fun.h \
     worker.h
@@ -21,6 +24,7 @@ HEADERS += \
 FORMS += \
     widget.ui
 
+LIBS += -lWs2_32
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

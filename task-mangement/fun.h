@@ -26,11 +26,20 @@
 #define WINDOW 2
 #define RING 4
 
+//sort ways
+#define ENDTIME 1
+#define URGENT 2
+
 //max numbers
 #define MAX_TASK 100
 #define MAX_ALARM 500
 
 using namespace std;
+
+extern bool alarm_work;
+
+extern int overdue;
+
 
 //classes
 typedef struct c
@@ -49,19 +58,26 @@ class user
     int id_num;
 public:
     static int user_number;
-    string get_name();
+    user();
+    user(int id_num,string na,string pas,string email_a,string email_pass,colors co );
+    string get_name() const;
     // input:~ output:success:1;else:0 with error information at char* error
     bool change_name(string name,char* error);
-    string get_password();
+    string get_password() const;
     bool change_password(string password,char* error);
-    string get_email();
+    string get_email() const;
     bool change_email(string email_acc,char* error);
-    string get_email_password();
+    string get_email_password() const;
     bool change_email_password(string email_password,char* error);
-    int get_id();
-    colors get_color();
+    int get_id() const;
+    colors get_color() const;
     bool change_color(colors c,char* error);
+    friend ifstream& operator >>(ifstream& i,user& u);
+    friend ofstream& operator <<(ofstream& o,const user& u);
 };
+extern user curr_user;
+
+
 class task;
 class alarm
 {
@@ -71,28 +87,34 @@ class alarm
     //member:tm_year tm_month tm_mday tm_hour tm_min
     int alarm_way;
     vector<int> member;//members to alarm
-
     friend class task;
+
 public:
+    bool valid;
     int saving_place; //using for saving in array and file
     static int alarm_number; //sum of alarm
+    static int alarm_number_vec;
+    static int real_alarm_number;
     static set<int> empty_location;
     static map<int,int> id_to_location;
     //get an alarm with alarms[alarm::id_to_location[alarm_id]]
-    int get_alarm_id();
-    struct tm get_alarmtime();
-    int get_alarm_way();
+    alarm();
+    alarm(int aid,int tid,struct tm tim,int way,int* member,int member_num);
+    int get_alarm_id() const;
+    struct tm get_alarmtime() const;
+    int get_alarm_way() const;
 
     //please write this function to show window,ring and send email according to the alarm_way
     //you can use the "send_email" function
     bool do_alarm();
-
+    friend ofstream& operator<<(ofstream& o,const alarm& a);
+    friend ifstream& operator>>(ifstream& in,alarm& a);
 };
 typedef struct m
 {
     string name;
     string email;
-}member;
+}memberr;
 class task
 {
     string title;
@@ -103,32 +125,41 @@ class task
     int urgent;
     int task_id;
     int mode;
-    bool show;
-    vector<int> alarm_id;
+    bool show;  
     friend class alarm;
-    friend bool filter(int type,int mode,char *error);
 public:
-    vector<member> members;
+    bool valid;
+    vector<int> alarm_id;
+    vector<memberr> members;
     int save_place; //using for saving in array and file
     static int task_number; //sum of task
+    static int task_number_vec;
+    static int real_task_number;
     static set<int>empty_location;
     static map<int,int> id_to_location;
     //get a task with tasks[task::id_to_location[task_id]]
-    string get_title();
+    task();
+    task(string ti,string tex,int typ,struct tm endt,int tid,int urg,int mode,bool show);
+    string get_title() const;
     bool change_title(string title,char* error);
-    string get_text();
+    string get_text() const;
     bool change_text(string text,char* error);
-    int get_urgent();
+    int get_urgent() const;
     bool change_urgent(int urgent,char* error);
-    int get_mode();
+    int get_mode() const;
     bool change_mode(int mode,char* error);
-    struct tm get_endtime();
-    bool change_endtime(struct tm* time,char* error);
-    int get_taskid();
+    struct tm get_endtime() const;
+    bool change_endtime(struct tm time,char* error);
+    int get_taskid() const;
     //return: -1:error else:alarm_id
     int make_alarm(struct tm alarmtime,int task_id,int alarm_way,int* member,int member_num,char* error);
     bool addmember(string name,string email,char* error);
     bool deletemember(int index,char* error);
+    friend int make_task(string title,string text,int type,int mode,struct tm endtime,int urg,char* error,bool show);
+    friend bool filter(int type,int mode,char *error);
+    friend bool update(char* error);
+    friend ofstream& operator<<(ofstream& o,const task& t);
+    friend ifstream& operator>>(ifstream& in,task& t);
 };
 //struct of alarm for set
 typedef struct alarm_q
@@ -137,29 +168,34 @@ typedef struct alarm_q
     int alarm_id;
 }alarm_qq;
 
-//compare class in set
 class cmp
 {
 public:
-    bool operator()(alarm_qq& a,alarm_qq& b);
+    bool operator()(const alarm_qq& a,const alarm_qq& b)const;
 };
 
+extern set<alarm_qq,cmp> alarm_queue;
+extern task tasks[MAX_TASK];
+extern alarm alarms[MAX_ALARM];
+
 // input:~ output:success:1;else:0 with error information at char* error
-bool login(string username,string password,char *error);
+int  login(string username,string password,char *error);
 // input:~ output:success:1;else:0 with error information at char* error
-bool signup(string username,string password,string email_account,string email_password,char *error);
-// input:~ output:success:1;else:0 with error information at char* error
-bool send_email(char* email_accont,char* email_password,string receiver,string subject,string content,char* error);
+bool signup(string username,string password,char *error,string email_account,string email_password,colors color);
+
+int make_task(string title,string text,int type,int mode,struct tm endtime,int urg,char* error,bool show);
 
 bool delete_task(int task_id,char *error);
 
 bool delete_alarm(int alarm_id,char* error);
 
-bool sort_task(int way,char *error);
+int comparetim(const struct tm& aa,const struct tm& bb,int way);
 
-bool filter(int type,int mode,char *error);
+bool sort_task(int way);
 
-bool update(char *error);
+//退出前调用，存盘
+bool save(char *error); 
 
-void fuu();
+bool load(string filename,char* error);
+
 #endif // FUN_H

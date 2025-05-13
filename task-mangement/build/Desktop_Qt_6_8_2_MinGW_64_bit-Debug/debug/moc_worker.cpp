@@ -38,7 +38,7 @@ struct qt_meta_tag_ZN6WorkerE_t {};
 #ifdef QT_MOC_HAS_STRINGDATA
 static constexpr auto qt_meta_stringdata_ZN6WorkerE = QtMocHelpers::stringData(
     "Worker",
-    "requestShowWindow",
+    "requestRing",
     ""
 );
 #else  // !QT_MOC_HAS_STRINGDATA
@@ -76,7 +76,7 @@ Q_CONSTINIT const QMetaObject Worker::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_tag_ZN6WorkerE_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<Worker, std::true_type>,
-        // method 'requestShowWindow'
+        // method 'requestRing'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -87,7 +87,7 @@ void Worker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
     auto *_t = static_cast<Worker *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: _t->requestShowWindow(); break;
+        case 0: _t->requestRing(); break;
         default: ;
         }
     }
@@ -95,7 +95,7 @@ void Worker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         int *result = reinterpret_cast<int *>(_a[0]);
         {
             using _q_method_type = void (Worker::*)();
-            if (_q_method_type _q_method = &Worker::requestShowWindow; *reinterpret_cast<_q_method_type *>(_a[1]) == _q_method) {
+            if (_q_method_type _q_method = &Worker::requestRing; *reinterpret_cast<_q_method_type *>(_a[1]) == _q_method) {
                 *result = 0;
                 return;
             }
@@ -135,7 +135,7 @@ int Worker::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void Worker::requestShowWindow()
+void Worker::requestRing()
 {
     QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }

@@ -8,7 +8,7 @@ class Worker : public QObject {
 public:
     void doWork();
 signals:
-    void requestShowWindow();
+    void requestRing();
 };
 
 #endif // WORKER_H

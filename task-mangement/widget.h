@@ -17,7 +17,8 @@ public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
 public slots:
-    void createSecondWindow();
+    void doALARM();
+    void doALARM_test();
 
 private:
     Ui::Widget *ui;
