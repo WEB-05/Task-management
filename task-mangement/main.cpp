@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 
    
     QObject::connect(&workerThread, &QThread::started, &worker, &Worker::doWork);
-    QObject::connect(&worker, &Worker::requestRing, &w,&Widget::doALARM_test);
+    QObject::connect(&worker, &Worker::requestRing, &w,&Widget::doALARM);
 
     workerThread.start();
     a.exec();

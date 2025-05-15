@@ -145,6 +145,7 @@ alarm_id(aid),task_id(tid),alarmtime(tim),alarm_way(way)
 int alarm::get_alarm_id() const {return alarm_id;}
 struct tm alarm::get_alarmtime() const {return alarmtime;}
 int alarm::get_alarm_way() const {return alarm_way;}
+int alarm::get_task_id() const {return task_id;}
 bool alarm::do_alarm()
 {
     if(alarm_way&2)
@@ -357,7 +358,7 @@ bool delete_task(int task_id,char *error)
     int loca=a->second;
     for(int i:tasks[loca].alarm_id)
     {
-        if(!delete_alarm(i,error))
+        if(!delete_alarm(i,error,0))
             return 0;
     }
     task::id_to_location.erase(a);
@@ -367,7 +368,7 @@ bool delete_task(int task_id,char *error)
     return 1;
 }
 
-bool delete_alarm(int alarm_id,char* error)
+bool delete_alarm(int alarm_id,char* error,int way=1)
 {
     auto a=alarm::id_to_location.find(alarm_id);
     if(a==alarm::id_to_location.end())
@@ -388,6 +389,13 @@ bool delete_alarm(int alarm_id,char* error)
         return 0;
     }
     alarm_queue.erase(b);
+    if(way)
+    {
+        int tid=alarms[loca].get_task_id();
+        auto k=find(tasks[task::id_to_location[tid]].alarm_id.begin(),
+                      tasks[task::id_to_location[tid]].alarm_id.end(),alarm_id);
+        tasks[task::id_to_location[tid]].alarm_id.erase(k);
+    }
     return 1;
 }
 
@@ -688,6 +696,7 @@ bool signup(string username,string password,char *error,string email_account="we
             outf<<users[i];
         }
         outf.close();
+        return 1;
 }
 
 

@@ -103,6 +103,7 @@ public:
     int get_alarm_id() const;
     struct tm get_alarmtime() const;
     int get_alarm_way() const;
+    int get_task_id() const;
 
     //please write this function to show window,ring and send email according to the alarm_way
     //you can use the "send_email" function
@@ -187,7 +188,7 @@ int make_task(string title,string text,int type,int mode,struct tm endtime,int u
 
 bool delete_task(int task_id,char *error);
 
-bool delete_alarm(int alarm_id,char* error);
+bool delete_alarm(int alarm_id,char* error,int way);
 
 int comparetim(const struct tm& aa,const struct tm& bb,int way);
 
