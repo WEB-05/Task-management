@@ -3,8 +3,11 @@
 #include "fun.h"
 #include<time.h>
 #include<set>
+#include "Widget.h"
 
 #include "ui_widget.h"
+
+extern char err_buf[100];
 
 
 Widget::Widget(QWidget *parent)
@@ -56,3 +59,51 @@ void Widget::doALARM()
         }
     }
 }
+
+//槽函数
+void Widget::onButtonClicked_login(const string &username,const string &password){
+    int result=login(username,password,err_buf);
+    if(result < 0){//显示一系列的错误提醒
+        Widget *info_window = new Widget();
+        QMessageBox::information(info_window,"提醒",err_buf);
+    }
+    else{//进入主菜单
+        MainTable();
+    }
+}
+
+void Widget::onButtonClicked_register(){
+    RegisterTable();
+}
+
+void Widget::onButtonClicked_confirm(const string &username,const string &password,const colors &color){
+    bool result = signup(username,password,err_buf,color);
+    if(result==0){//用户名已存在
+        Widget *info_window = new Widget();
+        QMessageBox::information(info_window,"提醒",err_buf);
+    }
+    else{//进入登录界面
+        LogInTable();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

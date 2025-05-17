@@ -1,10 +1,21 @@
 #include "fun.h"
 #include "email.h"
+#include "Widget.h"
 #include <iostream>
 #include <string.h>
 #include <fstream>
 #include <time.h>
 #include <algorithm>
+
+#include <QWidget>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QObject>
+#include <QVBoxLayout>
+#include <QLabel>
+#include <QMessageBox>
+#include <QString>
+
 using namespace std;
 
 //compare class in set
@@ -56,7 +67,7 @@ int last_5_complete[5]={0};
 int overdue=0;
 user curr_user;
 bool user_change=0;
-char err_buf[50];
+char err_buf[100];
 
 
 //class user
@@ -654,9 +665,9 @@ bool load(string filename,char* error)
     alarm_work=1;
     return 1;
 }
-
-bool signup(string username,string password,char *error,string email_account="webrunpku",
-    string email_password="HZ4suXv6ZEvMeDzp",colors color={0,0,0})
+/*string email_account="webrunpku",
+    string email_password="HZ4suXv6ZEvMeDzp",*/
+bool signup(string username,string password,char *error,colors color={0,0,0})
 {
     
         ifstream infile;
@@ -687,7 +698,7 @@ bool signup(string username,string password,char *error,string email_account="we
             strcpy(error,"all user data not found");
         }
         user::user_number++;
-        user newuse(user::user_number,username,password,email_account,email_password,color);
+        user newuse(user::user_number,username,password,"webrunpku","HZ4suXv6ZEvMeDzp",color);
         users.push_back(newuse);
         ofstream outf("user_data.txt",ios::out);
         outf<<user::user_number<<endl;
@@ -758,6 +769,152 @@ int  login(string username,string password,char *error)
 }
 
 
+
+
+
+
+
+
+
+
+
+void LogInTable(){//登录界面
+    Widget *Login_Window = new Widget();
+    Login_Window->setWindowTitle("PKU TimeManagement Master");
+    Login_Window->setFixedSize(350, 550);
+    //
+    QLineEdit *textInput1 = new QLineEdit(Login_Window);
+    textInput1->setPlaceholderText("Your name here");
+    textInput1->setFixedSize(260,30);
+    textInput1->setStyleSheet("color: white; background: rgba(255,255,255,0);");
+    QLineEdit *textInput2= new QLineEdit(Login_Window);
+    textInput2->setPlaceholderText("Your password here");
+    textInput2->setFixedSize(260,30);
+    textInput2->setStyleSheet("color: white; background: rgba(255,255,255,0);");
+
+
+
+    //
+    QPushButton *button1 = new QPushButton("",Login_Window);
+    button1->setFixedSize(260,37);
+    button1->setStyleSheet("color: white; background: rgba(255,255,255,0);");
+
+    QPushButton *button2 = new QPushButton("",Login_Window);
+    button2->setFixedSize(260,42);
+    button2->setStyleSheet("color: white; background: rgba(255,255,255,0);");
+
+
+    //
+    QVBoxLayout *mainlayout=new QVBoxLayout(Login_Window);
+    mainlayout->addWidget(textInput1);
+    mainlayout->addWidget(textInput2);
+    mainlayout->addWidget(button1);
+    mainlayout->addWidget(button2);
+    mainlayout->setContentsMargins(40,130,20,20);
+    mainlayout->setSpacing(15);
+
+
+
+    Login_Window->setLayout(mainlayout);
+    QLabel* bgLabel = new QLabel(Login_Window);
+    bgLabel->setPixmap(QPixmap(":/bg.jpg"));
+    bgLabel->setScaledContents(true);
+    bgLabel->resize(Login_Window->size());
+    bgLabel->lower();
+    bgLabel->setAttribute(Qt::WA_TranslucentBackground);
+    bgLabel->setStyleSheet("border-image: url(bg.jpg); background: transparent;");
+
+
+
+    Login_Window->show();
+
+
+
+    QObject::connect(button1, &QPushButton::clicked, [=]() {
+        // 在Lambda内部获取输入框内容并调用槽函数
+        QString username = textInput1->text();  // 假设text1是QLineEdit
+        QString password = textInput2->text();
+        Login_Window->onButtonClicked_login(username.toStdString(), password.toStdString());
+    });
+    QObject::connect(button2,&QPushButton::clicked,Login_Window,&Widget::onButtonClicked_register);
+}
+
+void RegisterTable(){
+    Widget *Register_Window = new Widget();
+    Register_Window->setWindowTitle("PKU TimeManagement Master");
+    Register_Window->setFixedSize(350, 750);
+    //
+    QLineEdit *textInput1 = new QLineEdit(Register_Window);
+    textInput1->setPlaceholderText("Your name here");
+    textInput1->setFixedSize(260,30);
+    textInput1->setStyleSheet("color: white; background: rgba(255,255,255,0);");
+    QLineEdit *textInput2= new QLineEdit(Register_Window);
+    textInput2->setPlaceholderText("Your password here");
+    textInput2->setFixedSize(260,30);
+    textInput2->setStyleSheet("color: white; background: rgba(255,255,255,0);");
+    QLineEdit *textInput3= new QLineEdit(Register_Window);
+    textInput3->setPlaceholderText("Your email account here");
+    textInput3->setFixedSize(260,30);
+    textInput3->setStyleSheet("color: white; background: rgba(255,255,255,0);");
+    QLineEdit *textInput4= new QLineEdit(Register_Window);
+    textInput4->setPlaceholderText("Your email account password here");
+    textInput4->setFixedSize(300,30);
+    textInput4->setStyleSheet("color: white; background: rgba(255,255,255,0);");
+    QLineEdit *textInput5= new QLineEdit(Register_Window);
+    textInput5->setPlaceholderText("Your email account password here");
+    textInput5->setFixedSize(300,30);
+    textInput5->setStyleSheet("color: white; background: rgba(255,255,255,0);");
+    QPushButton *button1 = new QPushButton("",Register_Window);
+    button1->setFixedSize(260,37);
+    button1->setStyleSheet("color: white; background: rgba(255,255,255,0);");
+
+    QVBoxLayout *mainlayout=new QVBoxLayout(Register_Window);
+    mainlayout->addWidget(textInput1);
+    mainlayout->addWidget(textInput2);
+    mainlayout->addWidget(textInput3);
+    mainlayout->addWidget(textInput4);
+    mainlayout->addWidget(button1);
+    mainlayout->setContentsMargins(40,130,20,20);//undone
+    mainlayout->setSpacing(15);//undone
+    Register_Window->setLayout(mainlayout);
+
+    QLabel* bgLabel1 = new QLabel(Register_Window);
+    bgLabel1->setPixmap(QPixmap(":/"));//undone
+    bgLabel1->setScaledContents(true);
+    bgLabel1->resize(Register_Window->size());
+    bgLabel1->lower();
+    bgLabel1->setAttribute(Qt::WA_TranslucentBackground);
+    bgLabel1->setStyleSheet("border-image: url(); background: transparent;");//undone
+
+
+
+    Register_Window->show();
+
+
+
+    QObject::connect(button1, &QPushButton::clicked, [=]() {
+        // 在Lambda内部获取输入框内容并调用槽函数
+        QString username = textInput1->text();  // 假设text1是QLineEdit
+        QString password = textInput2->text();
+        QString color1 = textInput3->text();
+        QString color2 = textInput4->text();
+        QString color3 = textInput5->text();
+        //把QString类转成colors类
+        string color11 = color1.toStdString();
+        string color22 = color2.toStdString();
+        string color33 = color3.toStdString();
+
+        colors color={color11[0]-'0',color22[0]-'0',color33[0]-'0'};
+        Register_Window->onButtonClicked_confirm(username.toStdString(), password.toStdString(),color);
+    });
+}
+
+void MainTable(){
+
+}
+
+
+
 //notes:
 //1.所有输入中不要有空格（先不做错误检测，输入测试时手动避免）
 //2.一定要调用save
@@ -766,3 +923,27 @@ int  login(string username,string password,char *error)
 //5.暂不支持用户注销
 //6.展示时注意valid字段（member是name!="empty"）
 //7.所有文件GBK编码
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

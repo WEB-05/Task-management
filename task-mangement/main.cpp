@@ -20,8 +20,9 @@ int main(int argc, char *argv[])
 
     QApplication a(argc,argv);
     //WaitForSingleObject(Mutex,INFINITE);
-    Widget w;
-    w.show();
+
+    LogInTable();
+
     //ReleaseMutex(Mutex);
 
 

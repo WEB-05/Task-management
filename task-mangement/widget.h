@@ -2,8 +2,18 @@
 #define WIDGET_H
 
 #include <QWidget>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QObject>
+#include <QVBoxLayout>
+#include <QLabel>
+#include <QMessageBox>
+#include <string.h>
+
+#include "fun.h"
 
 QT_BEGIN_NAMESPACE
+using namespace std;
 namespace Ui {
 class Widget;
 }
@@ -19,6 +29,12 @@ public:
 public slots:
     void doALARM();
     void doALARM_test();
+
+    void onButtonClicked_login(const string &username,const string &password);
+    void onButtonClicked_register();
+
+    void onButtonClicked_confirm(const string &username,const string &password,const colors &color);
+
 
 private:
     Ui::Widget *ui;
