@@ -11,9 +11,9 @@
 #include <string.h>
 
 #include "fun.h"
-
-QT_BEGIN_NAMESPACE
 using namespace std;
+QT_BEGIN_NAMESPACE
+
 namespace Ui {
 class Widget;
 }

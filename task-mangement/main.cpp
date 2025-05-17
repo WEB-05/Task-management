@@ -20,6 +20,7 @@ int main(int argc, char *argv[])
 
     QApplication a(argc,argv);
     //WaitForSingleObject(Mutex,INFINITE);
+    Widget w;
 
     LogInTable();
 
@@ -32,7 +33,7 @@ int main(int argc, char *argv[])
 
    
     QObject::connect(&workerThread, &QThread::started, &worker, &Worker::doWork);
-    QObject::connect(&worker, &Worker::requestRing, &w,&Widget::doALARM);
+    //QObject::connect(&worker, &Worker::requestRing, &w,&Widget::doALARM_test);
 
     workerThread.start();
     a.exec();

@@ -3,7 +3,8 @@
 #include "fun.h"
 #include<time.h>
 #include<set>
-#include "Widget.h"
+#include<iostream>
+#include <QString>
 
 #include "ui_widget.h"
 
@@ -25,10 +26,13 @@ Widget::~Widget()
 void Widget::doALARM_test()
 {
     Widget *secondWindow = new Widget(); 
-    secondWindow->setWindowTitle("Second Window");
+    secondWindow->setWindowTitle("çª—å£2");
     secondWindow->show();
+    QString subject="æé†’äº‹é¡¹";
+    QString text="æé†’æ­£æ–‡";
+
     send_email("webrunpku","HZ4suXv6ZEvMeDzp","webrunpku@126.com","2300017788@stu.pku.edu.cn"
-    ,"ÌáĞÑÊÂÏî","ÌáĞÑÕıÎÄ");
+    ,subject.toLocal8Bit().toStdString(),text.toLocal8Bit().toStdString());
 }
 
 void Widget::doALARM()
@@ -60,30 +64,34 @@ void Widget::doALARM()
     }
 }
 
-//²Ûº¯Êı
+//æ§½å‡½æ•°
 void Widget::onButtonClicked_login(const string &username,const string &password){
     int result=login(username,password,err_buf);
-    if(result < 0){//ÏÔÊ¾Ò»ÏµÁĞµÄ´íÎóÌáĞÑ
+    if(result < 0){//æ˜¾ç¤ºä¸€ç³»åˆ—çš„é”™è¯¯æé†’
         Widget *info_window = new Widget();
-        QMessageBox::information(info_window,"ÌáĞÑ",err_buf);
+        QMessageBox::information(info_window,"æé†’",err_buf);
     }
-    else{//½øÈëÖ÷²Ëµ¥
+    else{//è¿›å…¥ä¸»èœå•
         MainTable();
     }
 }
 
 void Widget::onButtonClicked_register(){
     RegisterTable();
+    this->hide();
 }
 
 void Widget::onButtonClicked_confirm(const string &username,const string &password,const colors &color){
     bool result = signup(username,password,err_buf,color);
-    if(result==0){//ÓÃ»§ÃûÒÑ´æÔÚ
+    if(result==0){//ç”¨æˆ·åå·²å­˜åœ¨
         Widget *info_window = new Widget();
-        QMessageBox::information(info_window,"ÌáĞÑ",err_buf);
+        QMessageBox::information(info_window,"æé†’",err_buf);
     }
-    else{//½øÈëµÇÂ¼½çÃæ
+    else{//è¿›å…¥ç™»å½•ç•Œé¢
+        Widget *info_window = new Widget();
+        QMessageBox::information(info_window,"æ³¨å†Œ","æ³¨å†ŒæˆåŠŸï¼");
         LogInTable();
+        this->hide();
     }
 }
 

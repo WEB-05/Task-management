@@ -14,7 +14,4 @@
 
 6.展示时注意valid字段（member是name!="empty"）
 
- 7.所有文件GBK编码
-
-123
-456
+ 7.所有文件UTF-8编码

@@ -18,7 +18,7 @@ void Worker::doWork()
         struct tm *tim=localtime(&current);
         n=(5-(tim->tm_min)%5)*60-tim->tm_sec;
         QThread::sleep(n);
-        emit Worker::requestRing(); // ·¢ËÍĞÅºÅ£¬ÇëÇóÖ÷Ïß³ÌÌáĞÑ
+        emit Worker::requestRing(); // å‘é€ä¿¡å·ï¼Œè¯·æ±‚ä¸»çº¿ç¨‹æé†’
     }
     //ReleaseMutex(Mutex);
 }
