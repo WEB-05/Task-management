@@ -5,6 +5,7 @@
 #include <fstream>
 #include <time.h>
 #include <algorithm>
+#include<widget.h>
 using namespace std;
 
 //compare class in set
@@ -758,6 +759,110 @@ int  login(string username,string password,char *error)
 }
 
 
+
+
+void LogInTable(){//登录界面
+    Widget *Login_Window = new Widget();
+    Login_Window->setWindowTitle("PKU TimeManagement Master");
+    Login_Window->setFixedSize(350, 550);
+    //
+    QLineEdit *textInput1 = new QLineEdit(Login_Window);
+    textInput1->setPlaceholderText("Your name here");
+    textInput1->setFixedSize(260,30);
+    textInput1->setStyleSheet("color: white; background: rgba(255,255,255,0);");
+    QLineEdit *textInput2= new QLineEdit(Login_Window);
+    textInput2->setPlaceholderText("Your password here");
+    textInput2->setFixedSize(260,30);
+    textInput2->setStyleSheet("color: white; background: rgba(255,255,255,0);");
+
+
+
+    //
+    QPushButton *button1 = new QPushButton("",Login_Window);
+    button1->setFixedSize(260,37);
+    button1->setStyleSheet("color: white; background: rgba(255,255,255,0);");
+
+    QPushButton *button2 = new QPushButton("",Login_Window);
+    button2->setFixedSize(260,42);
+    button2->setStyleSheet("color: white; background: rgba(255,255,255,0);");
+
+
+    //
+    QVBoxLayout *mainlayout=new QVBoxLayout(Login_Window);
+    mainlayout->addWidget(textInput1);
+    mainlayout->addWidget(textInput2);
+    mainlayout->addWidget(button1);
+    mainlayout->addWidget(button2);
+    mainlayout->setContentsMargins(40,130,20,20);
+    mainlayout->setSpacing(15);
+
+
+
+    Login_Window->setLayout(mainlayout);
+    QLabel* bgLabel = new QLabel(Login_Window);
+    bgLabel->setPixmap(QPixmap(":/bg.jpg"));
+    bgLabel->setScaledContents(true);
+    bgLabel->resize(Login_Window->size());
+    bgLabel->lower();
+    bgLabel->setAttribute(Qt::WA_TranslucentBackground);
+    bgLabel->setStyleSheet("border-image: url(bg.jpg); background: transparent;");
+
+
+
+    Login_Window->show();
+
+}
+void RegisterTable(){
+    Widget *Register_Window = new Widget();
+    Register_Window->setWindowTitle("PKU TimeManagement Master");
+    Register->setFixedSize(350, 750);
+    //
+    QLineEdit *textInput1 = new QLineEdit(Register_Window);
+    textInput1->setPlaceholderText("Your name here");
+    textInput1->setFixedSize(260,30);
+    textInput1->setStyleSheet("color: white; background: rgba(255,255,255,0);");
+    QLineEdit *textInput2= new QLineEdit(Register_Window);
+    textInput2->setPlaceholderText("Your password here");
+    textInput2->setFixedSize(260,30);
+    textInput2->setStyleSheet("color: white; background: rgba(255,255,255,0);");
+    QLineEdit *textInput3= new QLineEdit(Register_Window);
+    textInput3->setPlaceholderText("Your email account here");
+    textInput3->setFixedSize(260,30);
+    textInput3->setStyleSheet("color: white; background: rgba(255,255,255,0);");
+    QLineEdit *textInput4= new QLineEdit(Register_Window);
+    textInput4->setPlaceholderText("Your email account password here");
+    textInput4->setFixedSize(300,30);
+    textInput4->setStyleSheet("color: white; background: rgba(255,255,255,0);");
+    QPushButton *button1 = new QPushButton("",Register_Window);
+    button1->setFixedSize(260,37);
+    button1->setStyleSheet("color: white; background: rgba(255,255,255,0);");
+
+    QVBoxLayout *mainlayout=new QVBoxLayout(Register_Window);
+    mainlayout->addWidget(textInput1);
+    mainlayout->addWidget(textInput2);
+    mainlayout->addWidget(textInput3);
+    mainlayout->addWidget(textInput4);
+    mainlayout->addWidget(button1);
+    mainlayout->setContentsMargins(40,130,20,20);//undone
+    mainlayout->setSpacing(15);//undone
+    Register_Window->setLayout(mainlayout);
+
+
+
+    QLabel* bgLabel1 = new QLabel(Register_Window);
+    bgLabel1->setPixmap(QPixmap(":/"));//undone
+    bgLabel1->setScaledContents(true);
+    bgLabel1->resize(Register_Window->size());
+    bgLabel1->lower();
+    bgLabel1->setAttribute(Qt::WA_TranslucentBackground);
+    bgLabel1->setStyleSheet("border-image: url(); background: transparent;");//undone
+
+
+
+    Register_Window->show();
+
+
+}
 //notes:
 //1.所有输入中不要有空格（先不做错误检测，输入测试时手动避免）
 //2.一定要调用save

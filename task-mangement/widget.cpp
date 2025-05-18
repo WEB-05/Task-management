@@ -24,7 +24,7 @@ void Widget::doALARM_test()
     Widget *secondWindow = new Widget(); 
     secondWindow->setWindowTitle("Second Window");
     secondWindow->show();
-    send_email("webrunpku","HZ4suXv6ZEvMeDzp","webrunpku@126.com","2300017788@stu.pku.edu.cn"
+    send_email("webrunpku","HZ4suXv6ZEvMeDzp","webrunpku@126.com","2400013226@stu.pku.edu.cn"
     ,"提醒事项","提醒正文");
 }
 
@@ -56,3 +56,26 @@ void Widget::doALARM()
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

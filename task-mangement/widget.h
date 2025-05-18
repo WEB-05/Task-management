@@ -2,6 +2,10 @@
 #define WIDGET_H
 
 #include <QWidget>
+#include<QLineEdit>
+#include<QPushButton>
+#include<QVBoxLayout>
+#include<QLabel>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

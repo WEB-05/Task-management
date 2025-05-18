@@ -6,6 +6,8 @@
 #include<queue>
 #include<set>
 #include<map>
+
+
 //task type
 #define STUDY 1
 #define WORK 2
@@ -198,5 +200,5 @@ bool sort_task(int way);
 bool save(char *error); 
 
 bool load(string filename,char* error);
-
+void LogInTable();
 #endif // FUN_H
