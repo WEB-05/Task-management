@@ -184,7 +184,7 @@ extern alarm alarms[MAX_ALARM];
 // input:~ output:success:1;else:0 with error information at char* error
 int  login(string username,string password,char *error);
 // input:~ output:success:1;else:0 with error information at char* error
-bool signup(string username,string password,char *error,string email_account,string email_password,colors color);
+bool signup(string username,string password,char *error);
 
 int make_task(string title,string text,int type,int mode,struct tm endtime,int urg,char* error,bool show);
 
@@ -201,4 +201,6 @@ bool save(char *error);
 
 bool load(string filename,char* error);
 void LogInTable();
+void RegisterTable();
+void MainTable();
 #endif // FUN_H

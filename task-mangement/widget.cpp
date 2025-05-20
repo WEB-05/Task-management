@@ -6,7 +6,7 @@
 
 #include "ui_widget.h"
 
-
+extern char err_buf[100];
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Widget)
@@ -57,7 +57,40 @@ void Widget::doALARM()
     }
 }
 
+void Widget::onButtonClicked_login(const string &username,const string &password){
+    int result=login(username,password,err_buf);
+    if(result < 0){//显示一系列的错误提醒
+        Widget *info_window = new Widget();
+        QMessageBox::information(info_window,"提醒",err_buf);
+    }
+    else{//进入主菜单
+        MainTable();
+        this->close();
+    }
+}
 
+void Widget::onButtonClicked_register(){
+    RegisterTable();
+    this->close();
+}
+
+void Widget::onButtonClicked_confirm(const string &username,const string &password){
+    bool result = signup(username,password,err_buf);
+    if(result==0){//用户名已存在
+        Widget *info_window = new Widget();
+        QMessageBox::information(info_window,"提醒",err_buf);
+    }
+    else{//进入登录界面
+        LogInTable();
+        this->close();
+    }
+}
+
+void Widget::onButtonClicked_back(){
+
+    LogInTable();
+    this->close();
+}
 
 
 

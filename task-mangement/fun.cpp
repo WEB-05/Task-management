@@ -656,50 +656,48 @@ bool load(string filename,char* error)
     return 1;
 }
 
-bool signup(string username,string password,char *error,string email_account="webrunpku",
-    string email_password="HZ4suXv6ZEvMeDzp",colors color={0,0,0})
+bool signup(string username,string password,char *error)
 {
-    
-        ifstream infile;
-        infile.open("user_data.txt",ios::in);
-        vector<user> users;
-        if(infile)
-        {
-            infile>>user::user_number;
-            user us;
-            for(int i=0;i<user::user_number;i++)
-            {
-                infile>>us;
-                users.push_back(us);
-                string nn=us.get_name();
-                if(nn==username)
-                {   
-                    //需要做出提示用户名已存在
-                    strcpy(error,"username already exists");
-                    infile.close();
-                    return 0;
-                }
-            }
-            infile.close();
-        }
-        else
-        {
-            //如果是还没有注册过任何用户返回0是正常的，因为还没有保存过（没有创建文件）
-            strcpy(error,"all user data not found");
-        }
-        user::user_number++;
-        user newuse(user::user_number,username,password,email_account,email_password,color);
-        users.push_back(newuse);
-        ofstream outf("user_data.txt",ios::out);
-        outf<<user::user_number<<endl;
+
+    ifstream infile;
+    infile.open("user_data.txt",ios::in);
+    vector<user> users;
+    if(infile)
+    {
+        infile>>user::user_number;
+        user us;
         for(int i=0;i<user::user_number;i++)
         {
-            outf<<users[i];
+            infile>>us;
+            users.push_back(us);
+            string nn=us.get_name();
+            if(nn==username)
+            {
+                //需要做出提示用户名已存在
+                strcpy(error,"username already exists");
+                infile.close();
+                return 0;
+            }
         }
-        outf.close();
-        return 1;
+        infile.close();
+    }
+    else
+    {
+        //如果是还没有注册过任何用户返回0是正常的，因为还没有保存过（没有创建文件）
+        strcpy(error,"all user data not found");
+    }
+    user::user_number++;
+    user newuse(user::user_number,username,password,"webrunpku","HZ4suXv6ZEvMeDzp");
+    users.push_back(newuse);
+    ofstream outf("user_data.txt",ios::out);
+    outf<<user::user_number<<endl;
+    for(int i=0;i<user::user_number;i++)
+    {
+        outf<<users[i];
+    }
+    outf.close();
+    return 1;
 }
-
 
 
 int  login(string username,string password,char *error)
@@ -808,49 +806,51 @@ void LogInTable(){//登录界面
     bgLabel->setStyleSheet("border-image: url(bg.jpg); background: transparent;");
 
 
-
+    Login_Window->setAttribute(Qt::WA_DeleteOnClose);
     Login_Window->show();
-
+    QObject::connect(button1, &QPushButton::clicked, [=]() {
+        // 在Lambda内部获取输入框内容并调用槽函数
+        QString username = textInput1->text();  // 假设text1是QLineEdit
+        QString password = textInput2->text();
+        Login_Window->onButtonClicked_login(username.toStdString(), password.toStdString());
+    });
+    QObject::connect(button2,&QPushButton::clicked,Login_Window,&Widget::onButtonClicked_register);
 }
 void RegisterTable(){
-    Widget *Register_Window = new Widget();
+     Widget *Register_Window = new Widget();
     Register_Window->setWindowTitle("PKU TimeManagement Master");
-    Register->setFixedSize(350, 750);
+    Register_Window->setFixedSize(350, 500);
     //
     QLineEdit *textInput1 = new QLineEdit(Register_Window);
     textInput1->setPlaceholderText("Your name here");
-    textInput1->setFixedSize(260,30);
+    textInput1->setFixedSize(260,80);
     textInput1->setStyleSheet("color: white; background: rgba(255,255,255,0);");
     QLineEdit *textInput2= new QLineEdit(Register_Window);
     textInput2->setPlaceholderText("Your password here");
-    textInput2->setFixedSize(260,30);
+    textInput2->setFixedSize(260,50);
     textInput2->setStyleSheet("color: white; background: rgba(255,255,255,0);");
-    QLineEdit *textInput3= new QLineEdit(Register_Window);
-    textInput3->setPlaceholderText("Your email account here");
-    textInput3->setFixedSize(260,30);
-    textInput3->setStyleSheet("color: white; background: rgba(255,255,255,0);");
-    QLineEdit *textInput4= new QLineEdit(Register_Window);
-    textInput4->setPlaceholderText("Your email account password here");
-    textInput4->setFixedSize(300,30);
-    textInput4->setStyleSheet("color: white; background: rgba(255,255,255,0);");
+
+
     QPushButton *button1 = new QPushButton("",Register_Window);
-    button1->setFixedSize(260,37);
+    button1->setFixedSize(310,55);
     button1->setStyleSheet("color: white; background: rgba(255,255,255,0);");
+    QPushButton *button2 = new QPushButton("",Register_Window);
+    button2->setFixedSize(310,55);
+    button2->setStyleSheet("color: white; background: rgba(255,255,255,0);");
 
     QVBoxLayout *mainlayout=new QVBoxLayout(Register_Window);
     mainlayout->addWidget(textInput1);
     mainlayout->addWidget(textInput2);
-    mainlayout->addWidget(textInput3);
-    mainlayout->addWidget(textInput4);
     mainlayout->addWidget(button1);
-    mainlayout->setContentsMargins(40,130,20,20);//undone
-    mainlayout->setSpacing(15);//undone
+    mainlayout->addWidget(button2);
+    mainlayout->setContentsMargins(20,140,20,24);//undone
+    mainlayout->setSpacing(8);//undone
     Register_Window->setLayout(mainlayout);
 
 
 
     QLabel* bgLabel1 = new QLabel(Register_Window);
-    bgLabel1->setPixmap(QPixmap(":/"));//undone
+    bgLabel1->setPixmap(QPixmap(":/bg2"));//undone
     bgLabel1->setScaledContents(true);
     bgLabel1->resize(Register_Window->size());
     bgLabel1->lower();
@@ -858,9 +858,20 @@ void RegisterTable(){
     bgLabel1->setStyleSheet("border-image: url(); background: transparent;");//undone
 
 
-
+    Register_Window->setAttribute(Qt::WA_DeleteOnClose);
     Register_Window->show();
+    QObject::connect(button1, &QPushButton::clicked, [=]() {
+        // 在Lambda内部获取输入框内容并调用槽函数
+        QString username = textInput1->text();  // 假设text1是QLineEdit
+        QString password = textInput2->text();
 
+        Register_Window->onButtonClicked_confirm(username.toStdString(), password.toStdString());
+    });
+
+    QObject::connect(button2,&QPushButton::clicked,Register_Window,&::Widget::onButtonClicked_back);
+
+}
+void MainTable(){
 
 }
 //notes:

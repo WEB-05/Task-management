@@ -43,8 +43,13 @@ template <> constexpr inline auto Widget::qt_create_metaobjectdata<qt_meta_tag_Z
         "doALARM",
         "",
         "doALARM_test",
-        "Register",
-        "MainTable"
+        "onButtonClicked_login",
+        "string",
+        "username",
+        "password",
+        "onButtonClicked_register",
+        "onButtonClicked_confirm",
+        "onButtonClicked_back"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -52,10 +57,18 @@ template <> constexpr inline auto Widget::qt_create_metaobjectdata<qt_meta_tag_Z
         QtMocHelpers::SlotData<void()>(1, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'doALARM_test'
         QtMocHelpers::SlotData<void()>(3, 2, QMC::AccessPublic, QMetaType::Void),
-        // Slot 'Register'
-        QtMocHelpers::SlotData<void()>(4, 2, QMC::AccessPublic, QMetaType::Void),
-        // Slot 'MainTable'
-        QtMocHelpers::SlotData<void()>(5, 2, QMC::AccessPublic, QMetaType::Void),
+        // Slot 'onButtonClicked_login'
+        QtMocHelpers::SlotData<void(const string &, const string &)>(4, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { 0x80000000 | 5, 6 }, { 0x80000000 | 5, 7 },
+        }}),
+        // Slot 'onButtonClicked_register'
+        QtMocHelpers::SlotData<void()>(8, 2, QMC::AccessPublic, QMetaType::Void),
+        // Slot 'onButtonClicked_confirm'
+        QtMocHelpers::SlotData<void(const string &, const string &)>(9, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { 0x80000000 | 5, 6 }, { 0x80000000 | 5, 7 },
+        }}),
+        // Slot 'onButtonClicked_back'
+        QtMocHelpers::SlotData<void()>(10, 2, QMC::AccessPublic, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -81,12 +94,13 @@ void Widget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         switch (_id) {
         case 0: _t->doALARM(); break;
         case 1: _t->doALARM_test(); break;
-        case 2: _t->Register(); break;
-        case 3: _t->MainTable(); break;
+        case 2: _t->onButtonClicked_login((*reinterpret_cast< std::add_pointer_t<string>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<string>>(_a[2]))); break;
+        case 3: _t->onButtonClicked_register(); break;
+        case 4: _t->onButtonClicked_confirm((*reinterpret_cast< std::add_pointer_t<string>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<string>>(_a[2]))); break;
+        case 5: _t->onButtonClicked_back(); break;
         default: ;
         }
     }
-    (void)_a;
 }
 
 const QMetaObject *Widget::metaObject() const
@@ -108,14 +122,14 @@ int Widget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 6;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 6)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 4;
+        _id -= 6;
     }
     return _id;
 }
