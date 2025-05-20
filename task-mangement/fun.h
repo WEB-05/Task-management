@@ -8,8 +8,6 @@
 #include<map>
 
 
-#include "Widget.h"
-
 //task type
 #define STUDY 1
 #define WORK 2
@@ -199,7 +197,7 @@ int comparetim(const struct tm& aa,const struct tm& bb,int way);
 
 bool sort_task(int way);
 
-//ÍË³öÇ°µ÷ÓÃ£¬´æÅÌ
+//é€€å‡ºå‰è°ƒç”¨ï¼Œå­˜ç›˜
 bool save(char *error); 
 
 bool load(string filename,char* error);

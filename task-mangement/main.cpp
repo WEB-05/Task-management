@@ -23,6 +23,7 @@ int main(int argc, char *argv[])
 
     LogInTable();
 
+    Widget w;
     //ReleaseMutex(Mutex);
 
 
@@ -32,7 +33,7 @@ int main(int argc, char *argv[])
 
    
     QObject::connect(&workerThread, &QThread::started, &worker, &Worker::doWork);
-    QObject::connect(&worker, &Worker::requestRing, &w,&Widget::doALARM);
+    QObject::connect(&worker, &Worker::requestRing, &w,&Widget::doALARM_test);
 
     workerThread.start();
     a.exec();

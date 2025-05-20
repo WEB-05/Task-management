@@ -283,7 +283,7 @@ bool task::addmember(string name,string email,char* error)
     members.push_back(mb);
     return 1;
 }
-/// aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa emptyµÄ²»ÒªÏÔÊ¾³öÀ´£¨·ÀÖ¹ĞòºÅ¸Ä±ä£©
+/// aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa emptyçš„ä¸è¦æ˜¾ç¤ºå‡ºæ¥ï¼ˆé˜²æ­¢åºå·æ”¹å˜ï¼‰
 bool task::deletemember(int index,char* error)
 { members[index].name="empty";
     return 1;
@@ -659,7 +659,7 @@ bool load(string filename,char* error)
     }
     else
     {
-        //Èç¹ûÊÇ¸Õ×¢²áµÚÒ»´ÎµÇÂ¼·µ»Ø0ÊÇÕı³£µÄ£¬ÒòÎª»¹Ã»ÓĞ±£´æ¹ı£¨Ã»ÓĞ´´½¨ÎÄ¼ş£©
+        //å¦‚æœæ˜¯åˆšæ³¨å†Œç¬¬ä¸€æ¬¡ç™»å½•è¿”å›0æ˜¯æ­£å¸¸çš„ï¼Œå› ä¸ºè¿˜æ²¡æœ‰ä¿å­˜è¿‡ï¼ˆæ²¡æœ‰åˆ›å»ºæ–‡ä»¶ï¼‰
         strcpy(error,"data of the user don't found");
     }
     alarm_work=1;
@@ -684,7 +684,7 @@ bool signup(string username,string password,char *error,colors color={0,0,0})
                 string nn=us.get_name();
                 if(nn==username)
                 {   
-                    //ĞèÒª×ö³öÌáÊ¾ÓÃ»§ÃûÒÑ´æÔÚ
+                    //éœ€è¦åšå‡ºæç¤ºç”¨æˆ·åå·²å­˜åœ¨
                     strcpy(error,"username already exists");
                     infile.close();
                     return 0;
@@ -694,7 +694,7 @@ bool signup(string username,string password,char *error,colors color={0,0,0})
         }
         else
         {
-            //Èç¹ûÊÇ»¹Ã»ÓĞ×¢²á¹ıÈÎºÎÓÃ»§·µ»Ø0ÊÇÕı³£µÄ£¬ÒòÎª»¹Ã»ÓĞ±£´æ¹ı£¨Ã»ÓĞ´´½¨ÎÄ¼ş£©
+            //å¦‚æœæ˜¯è¿˜æ²¡æœ‰æ³¨å†Œè¿‡ä»»ä½•ç”¨æˆ·è¿”å›0æ˜¯æ­£å¸¸çš„ï¼Œå› ä¸ºè¿˜æ²¡æœ‰ä¿å­˜è¿‡ï¼ˆæ²¡æœ‰åˆ›å»ºæ–‡ä»¶ï¼‰
             strcpy(error,"all user data not found");
         }
         user::user_number++;
@@ -732,7 +732,7 @@ int  login(string username,string password,char *error)
                     {
                         if(password!=us.get_password())
                         {
-                            //Ó¦ÌáÊ¾ÃÜÂë´íÎó
+                            //åº”æç¤ºå¯†ç é”™è¯¯
                             strcpy(error,"password incorrect");
                             infile.close();
                             return -1;
@@ -749,14 +749,14 @@ int  login(string username,string password,char *error)
         }
         else
         {
-            //Ó¦ÌáÊ¾Ã»ÓĞ×¢²á£¬ÇëÏÈ×¢²á
-            strcpy(error,"all user data not found");
+            //åº”æç¤ºæ²¡æœ‰æ³¨å†Œï¼Œè¯·å…ˆæ³¨å†Œ
+            strcpy(error,"æ²¡æœ‰æ³¨å†Œï¼Œè¯·å…ˆæ³¨å†Œ");
             return -2;
         }
     if(!flag)
     {
-        //Ó¦ÌáÊ¾ÓÃ»§Ãû²»´æÔÚ
-        strcpy(error,"all user data not found");
+        //åº”æç¤ºç”¨æˆ·åä¸å­˜åœ¨
+        strcpy(error,"ç”¨æˆ·åä¸å­˜åœ¨");
         return -3;
     }
     char cid=char(curr_user.get_id()+'0');
@@ -778,7 +778,7 @@ int  login(string username,string password,char *error)
 
 
 
-void LogInTable(){//µÇÂ¼½çÃæ
+void LogInTable(){//ç™»å½•ç•Œé¢
     Widget *Login_Window = new Widget();
     Login_Window->setWindowTitle("PKU TimeManagement Master");
     Login_Window->setFixedSize(350, 550);
@@ -831,8 +831,8 @@ void LogInTable(){//µÇÂ¼½çÃæ
 
 
     QObject::connect(button1, &QPushButton::clicked, [=]() {
-        // ÔÚLambdaÄÚ²¿»ñÈ¡ÊäÈë¿òÄÚÈİ²¢µ÷ÓÃ²Ûº¯Êı
-        QString username = textInput1->text();  // ¼ÙÉètext1ÊÇQLineEdit
+        // åœ¨Lambdaå†…éƒ¨è·å–è¾“å…¥æ¡†å†…å®¹å¹¶è°ƒç”¨æ§½å‡½æ•°
+        QString username = textInput1->text();  // å‡è®¾text1æ˜¯QLineEdit
         QString password = textInput2->text();
         Login_Window->onButtonClicked_login(username.toStdString(), password.toStdString());
     });
@@ -896,13 +896,13 @@ void RegisterTable(){
 
 
     QObject::connect(button1, &QPushButton::clicked, [=]() {
-        // ÔÚLambdaÄÚ²¿»ñÈ¡ÊäÈë¿òÄÚÈİ²¢µ÷ÓÃ²Ûº¯Êı
-        QString username = textInput1->text();  // ¼ÙÉètext1ÊÇQLineEdit
+        // åœ¨Lambdaå†…éƒ¨è·å–è¾“å…¥æ¡†å†…å®¹å¹¶è°ƒç”¨æ§½å‡½æ•°
+        QString username = textInput1->text();  // å‡è®¾text1æ˜¯QLineEdit
         QString password = textInput2->text();
         QString color1 = textInput3->text();
         QString color2 = textInput4->text();
         QString color3 = textInput5->text();
-        //°ÑQStringÀà×ª³ÉcolorsÀà
+        //æŠŠQStringç±»è½¬æˆcolorsç±»
         string color11 = color1.toStdString();
         string color22 = color2.toStdString();
         string color33 = color3.toStdString();
@@ -921,13 +921,13 @@ void MainTable(){
 
 
 //notes:
-//1.ËùÓĞÊäÈëÖĞ²»ÒªÓĞ¿Õ¸ñ£¨ÏÈ²»×ö´íÎó¼ì²â£¬ÊäÈë²âÊÔÊ±ÊÖ¶¯±ÜÃâ£©
-//2.Ò»¶¨Òªµ÷ÓÃsave
-//3.Ã¿´ÎË¢ĞÂupdate
-//4.ĞÂÔØÈëÊı¾İ×îºÃÖØ¹ıÒ»´ÎfilterºÍsort
-//5.Ôİ²»Ö§³ÖÓÃ»§×¢Ïú
-//6.Õ¹Ê¾Ê±×¢Òâvalid×Ö¶Î£¨memberÊÇname!="empty"£©
-//7.ËùÓĞÎÄ¼şGBK±àÂë
+//1.æ‰€æœ‰è¾“å…¥ä¸­ä¸è¦æœ‰ç©ºæ ¼ï¼ˆå…ˆä¸åšé”™è¯¯æ£€æµ‹ï¼Œè¾“å…¥æµ‹è¯•æ—¶æ‰‹åŠ¨é¿å…ï¼‰
+//2.ä¸€å®šè¦è°ƒç”¨save
+//3.æ¯æ¬¡åˆ·æ–°update
+//4.æ–°è½½å…¥æ•°æ®æœ€å¥½é‡è¿‡ä¸€æ¬¡filterå’Œsort
+//5.æš‚ä¸æ”¯æŒç”¨æˆ·æ³¨é”€
+//6.å±•ç¤ºæ—¶æ³¨æ„validå­—æ®µï¼ˆmemberæ˜¯name!="empty"ï¼‰
+//7.æ‰€æœ‰æ–‡ä»¶GBKç¼–ç 
 
 
 
