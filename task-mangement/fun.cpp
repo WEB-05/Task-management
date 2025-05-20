@@ -853,7 +853,7 @@ void RegisterTable(){
     textInput2->setFixedSize(260,30);
     textInput2->setStyleSheet("color: white; background: rgba(255,255,255,0);");
     QLineEdit *textInput3= new QLineEdit(Register_Window);
-    textInput3->setPlaceholderText("Your email account here");
+    textInput3->setPlaceholderText("RGB");
     textInput3->setFixedSize(260,30);
     textInput3->setStyleSheet("color: white; background: rgba(255,255,255,0);");
     QLineEdit *textInput4= new QLineEdit(Register_Window);
@@ -867,6 +867,9 @@ void RegisterTable(){
     QPushButton *button1 = new QPushButton("",Register_Window);
     button1->setFixedSize(260,37);
     button1->setStyleSheet("color: white; background: rgba(255,255,255,0);");
+    QPushButton *button2 = new QPushButton("",Register_Window);
+    button2->setFixedSize(260,37);
+    button2->setStyleSheet("color: white; background: rgba(255,255,255,0);");
 
     QVBoxLayout *mainlayout=new QVBoxLayout(Register_Window);
     mainlayout->addWidget(textInput1);
@@ -907,6 +910,8 @@ void RegisterTable(){
         colors color={color11[0]-'0',color22[0]-'0',color33[0]-'0'};
         Register_Window->onButtonClicked_confirm(username.toStdString(), password.toStdString(),color);
     });
+
+    QObject::connect(button2,&QPushButton::clicked,Register_Window,&::Widget::onButtonClicked_login);
 }
 
 void MainTable(){

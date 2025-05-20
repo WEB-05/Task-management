@@ -34,7 +34,7 @@ public slots:
     void onButtonClicked_register();
 
     void onButtonClicked_confirm(const string &username,const string &password,const colors &color);
-
+    void onButtonClicked_back();
 
 private:
     Ui::Widget *ui;
