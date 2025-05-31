@@ -23,7 +23,7 @@ public:
     {
         if (Widget->objectName().isEmpty())
             Widget->setObjectName("Widget");
-        Widget->resize(800, 600);
+        Widget->resize(380, 701);
 
         retranslateUi(Widget);
 
