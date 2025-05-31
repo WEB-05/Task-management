@@ -9,7 +9,7 @@ using namespace std;
 void Worker::doWork()
 {
     //WaitForSingleObject(Mutex, INFINITE);
-    printf("time\n");
+    printf("alarm start\n");
     fflush(stdout);
     int n;
     while(1)
@@ -17,6 +17,7 @@ void Worker::doWork()
         time_t current=time(NULL);
         struct tm *tim=localtime(&current);
         n=(5-(tim->tm_min)%5)*60-tim->tm_sec;
+        n=60-tim->tm_sec;
         QThread::sleep(n);
         emit Worker::requestRing(); // 发送信号，请求主线程提醒
     }

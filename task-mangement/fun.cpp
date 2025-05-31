@@ -1,22 +1,17 @@
-#include "fun.h"
+﻿#include "fun.h"
 #include "email.h"
-#include "Widget.h"
 #include <iostream>
 #include <string.h>
 #include <fstream>
 #include <time.h>
 #include <algorithm>
-
-#include <QWidget>
-#include <QLineEdit>
-#include <QPushButton>
-#include <QObject>
-#include <QVBoxLayout>
-#include <QLabel>
-#include <QMessageBox>
-#include <QString>
-
+#include<widget.h>
+#include<QApplication>
+#include <QSoundEffect>
 using namespace std;
+
+char err_buf[50];
+QSoundEffect *alarm_sound =nullptr;
 
 //compare class in set
 
@@ -65,9 +60,10 @@ set<string> u_name;
 
 int last_5_complete[5]={0};
 int overdue=0;
+int complete_num=0;
 user curr_user;
 bool user_change=0;
-char err_buf[100];
+
 
 
 //class user
@@ -78,19 +74,43 @@ string user::get_name() const
 {return name;}
 bool user::change_name(string name1,char* error)
 {
-    if(u_name.find(name1)!=u_name.end())
+    if(name1=="")
     {
-        strcpy(error,"name already exists");
+        strcpy(error,"用户名不能为空！");
         return 0;
     }
+    if(this->name==name1)
+    {
+        strcpy(error,"新旧用户名一致，换个damn！");
+        return 0;
+    }
+    if(u_name.find(name1)!=u_name.end())
+    {
+        strcpy(error,"手慢无，该用户名已存在！");
+        return 0;
+    }
+    u_name.erase(name);
     name=name1;
+    u_name.insert(name1);
     user_change=1;
+    strcpy(error,"用户名更改成功，damn！");
     return 1;   
 }
 string user::get_password() const
 {return password;}
 bool user::change_password(string pass,char* error)
 {
+    if(pass=="")
+    {
+        strcpy(error,"哎嘛心真大，密码咋能没有呢！");
+        return 0;
+    }
+    if(this->password==pass)
+    {
+        strcpy(error,"新旧密码一致，换个damn！");
+        return 0;
+    }
+    strcpy(error,"密码更改成功，damn！");
     password=pass;
     user_change=1;
     return 1;   
@@ -122,6 +142,7 @@ colors user::get_color() const
 bool user::change_color(colors c,char* error)
 {
     color=c;
+    user_change=1;
     return 1;   
 }
 ifstream& operator >>(ifstream& i,user& u)
@@ -144,13 +165,9 @@ int alarm::real_alarm_number=0;
 set<int> alarm::empty_location;
 map<int,int> alarm::id_to_location;
 alarm::alarm(){valid=0;}
-alarm::alarm(int aid,int tid,struct tm tim,int way,int* members,int member_num):
+alarm::alarm(int aid,int tid,struct tm tim,int way):
 alarm_id(aid),task_id(tid),alarmtime(tim),alarm_way(way)
 {
-    for(int i=0;i<member_num;i++)
-        {
-            member.push_back(members[i]);
-        }
     valid=1;
 }
 int alarm::get_alarm_id() const {return alarm_id;}
@@ -159,48 +176,65 @@ int alarm::get_alarm_way() const {return alarm_way;}
 int alarm::get_task_id() const {return task_id;}
 bool alarm::do_alarm()
 {
-    if(alarm_way&2)
+    string name=tasks[task::id_to_location[task_id]].title;
+    string text=tasks[task::id_to_location[task_id]].text;
+    struct tm endtime=tasks[task::id_to_location[task_id]].endtime;
+    int mode=tasks[task::id_to_location[task_id]].mode;
+    string window="任务"+name+"提醒时间到了！";
+    string subject="PKU Task Mangement："+name+"任务提醒";
+    string content="您好，PKU Task Mangement 提醒您：\n任务名称："+name+"\n任务内容："+text+"\n截止时间："+
+        to_string(endtime.tm_year+1900)+"年"+to_string(endtime.tm_mon+1)+"月"+to_string(endtime.tm_mday)+"日 "
+                     +to_string(endtime.tm_hour)+":"+to_string(endtime.tm_min);
+    if(mode==4)
     {
-        //window
+        content+="\n任务尚未完成，请合理安排时间，注意任务完成情况！";
     }
-    if(alarm_way&4)
+    else if(mode==1)
     {
-        //ring
+        content+="\n任务已经完成，此邮件仅做提醒！";
     }
     if(alarm_way&1)
     {
-        for(int i=0;i<member.size();i++)
+        int num=tasks[task::id_to_location[task_id]].members.size();
+        for(int i=0;i<num;i++)
         {
-            memberr mb=tasks[task::id_to_location[task_id]].members[member[i]];
-            send_email(curr_user.get_email(),curr_user.get_email_password(),mb.email,"subject","content",err_buf);
+            memberr mb=tasks[task::id_to_location[task_id]].members[i];
+            send_email(curr_user.get_email(),curr_user.get_email_password(),curr_user.get_email()+"@126.com",mb.email
+                       ,QString::fromStdString(subject).toLocal8Bit().toStdString(),
+                       QString::fromStdString(mb.name+content).toLocal8Bit().toStdString());
         }
+    }
+    if(alarm_way&2)
+    {
+        if(!alarm_sound)
+        {
+            alarm_sound = new QSoundEffect();
+            alarm_sound->setSource(QUrl::fromLocalFile(":/sound/alarm.wav"));
+            alarm_sound->setLoopCount(QSoundEffect::Infinite); // 无限循环
+        }
+        alarm_sound->play();
+        QMessageBox msgBox;
+        msgBox.setWindowModality(Qt::NonModal);  // 非模态对话框通常不触发系统提示音
+        msgBox.setWindowTitle("时间到");
+        msgBox.setText(QString::fromStdString(window));
+        msgBox.exec();
+        alarm_sound->stop();
     }
     return 1;
 }
 ofstream& operator<<(ofstream& o,const alarm& a)
 {
     o<<a.alarm_id<<' '<<a.task_id<<' '<<a.alarm_way<<' '<<a.valid<<' '<<a.saving_place<<endl;
-    o<<a.alarmtime.tm_year<<' '<<a.alarmtime.tm_mon<<' '<<a.alarmtime.tm_mday<<' '<<a.alarmtime.tm_min<<endl;
-    o<<a.member.size()<<endl;
-    for(int i=0;i<a.member.size();i++)
-    {
-        o<<a.member[i]<<' ';
-    }
+    o<<a.alarmtime.tm_year<<' '<<a.alarmtime.tm_mon<<' '<<a.alarmtime.tm_mday<<' '
+      <<a.alarmtime.tm_hour<<' '<<a.alarmtime.tm_min<<endl;
     o<<endl;
     return o;
 }
 ifstream& operator>>(ifstream& in,alarm& a)
 {
     in>>a.alarm_id>>a.task_id>>a.alarm_way>>a.valid>>a.saving_place;
-    in>>a.alarmtime.tm_year>>a.alarmtime.tm_mon>>a.alarmtime.tm_mday>>a.alarmtime.tm_min;
+    in>>a.alarmtime.tm_year>>a.alarmtime.tm_mon>>a.alarmtime.tm_mday>>a.alarmtime.tm_hour>>a.alarmtime.tm_min;
     a.alarmtime.tm_sec=0;
-    int n,memb;
-    in>>n;
-    for(int i=0;i<n;i++)
-    {
-        in>>memb;
-        a.member.push_back(memb);
-    }
     return in;
 }
 
@@ -212,8 +246,8 @@ set<int> task::empty_location;
 map<int,int> task::id_to_location;
 string task::get_title() const {return title;}
 task::task(){valid=0;}
-task::task(string ti,string tex,int typ,struct tm endt,int tid,int urg,int mod,bool show=1):
-title(ti),text(tex),type(typ),endtime(endt),task_id(tid),urgent(urg),mode(mod),show(show){valid=1;}
+task::task(string ti,string tex,int typ,struct tm endt,int tid,int urg,int alrw,int mod,bool show=1):
+    title(ti),text(tex),type(typ),endtime(endt),task_id(tid),urgent(urg),alarm_way(alrw),mode(mod),show(show){valid=1;}
 bool task::change_title(string titlen,char* error)
 {
     title=titlen;
@@ -231,6 +265,7 @@ bool task::change_urgent(int urgentn,char* error)
     urgent=urgentn;
     return 1;
 }
+int task::get_alarmway() const{return alarm_way;}
 int task::get_mode() const {return mode;}
 bool task::change_mode(int moden,char* error)
 {
@@ -246,10 +281,16 @@ bool task::change_endtime(struct tm time,char* error)
     return 1;
 }
 int task::get_taskid() const {return task_id;}
-int task::make_alarm(struct tm alarmtime,int task_id,int alarm_way,int* member_to,int member_num,char* error)
+int task::get_type() const {return type;}
+bool task::change_type(int typ,char* error)
+{
+    type=typ;
+    return 1;
+}
+int task::make_alarm(struct tm alarmtime,int task_id,int alarm_way,char* error)
 {
     int id=alarm::alarm_number;
-    alarm a(id,task_id,alarmtime,alarm_way,member_to,member_num);
+    alarm a(id,task_id,alarmtime,alarm_way);
     int loca;
     if(alarm::empty_location.empty())
     {
@@ -277,28 +318,29 @@ int task::make_alarm(struct tm alarmtime,int task_id,int alarm_way,int* member_t
     alarm_queue.insert(aq);
     return id;
 }
-bool task::addmember(string name,string email,char* error)
+int task::addmember(string name,string email,char* error)
 {
     memberr mb{name,email};
     members.push_back(mb);
-    return 1;
+    return members.size()-1;
 }
-/// aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa empty的不要显示出来（防止序号改变）
+
 bool task::deletemember(int index,char* error)
-{ members[index].name="empty";
+{
+    members.erase(members.begin()+index);
     return 1;
 }
 ofstream& operator<<(ofstream& o,const task& t)
     {
         o<<t.task_id<<' '<<t.title<<' '<<t.text<<' '<<t.type<<' '<<t.urgent<<' '<<t.mode<<' '<<t.show
-          <<' '<<t.valid<<' '<<t.save_place<<endl;
-        o<<t.endtime.tm_year<<' '<<t.endtime.tm_mon<<' '<<t.endtime.tm_mday<<' '<<t.endtime.tm_min<<endl;
+          <<' '<<t.valid<<' '<<t.save_place<<' '<<t.alarm_way<<endl;
+        o<<t.endtime.tm_year<<' '<<t.endtime.tm_mon<<' '<<t.endtime.tm_mday<<' '<<t.endtime.tm_hour<<' '<<t.endtime.tm_min<<endl;
         o<<t.alarm_id.size()<<endl;
         for(int i=0;i<t.alarm_id.size();i++)
         {
             o<<t.alarm_id[i]<<' ';
         }
-        o<<endl<<t.members.size();
+        o<<endl<<t.members.size()<<endl;
         for(int i=0;i<t.members.size();i++)
         {
             o<<t.members[i].name<<' '<<t.members[i].email<<endl;
@@ -307,8 +349,8 @@ ofstream& operator<<(ofstream& o,const task& t)
     }
 ifstream& operator>>(ifstream& in,task& t)
 {   
-    in>>t.task_id>>t.title>>t.text>>t.type>>t.urgent>>t.mode>>t.show>>t.valid>>t.save_place;
-    in>>t.endtime.tm_year>>t.endtime.tm_mon>>t.endtime.tm_mday>>t.endtime.tm_min;
+    in>>t.task_id>>t.title>>t.text>>t.type>>t.urgent>>t.mode>>t.show>>t.valid>>t.save_place>>t.alarm_way;
+    in>>t.endtime.tm_year>>t.endtime.tm_mon>>t.endtime.tm_mday>>t.endtime.tm_hour>>t.endtime.tm_min;
     t.endtime.tm_sec=0;
     int n,id;
     in>>n;
@@ -329,10 +371,10 @@ ifstream& operator>>(ifstream& in,task& t)
 
 
 
-int make_task(string title,string text,int type,int mode,struct tm endtime,int urg,char* error,bool show=1)
+int make_task(string title,string text,int type,int mode,struct tm endtime,int urg,int alarm_way,char* error,bool show=1)
 {
     int id=task::task_number;
-    task t(title,text,type,endtime,id,urg,mode,show);
+    task t(title,text,type,endtime,id,urg,alarm_way,mode,show);
     int loca;
     if(task::empty_location.empty())
     {
@@ -360,6 +402,7 @@ int make_task(string title,string text,int type,int mode,struct tm endtime,int u
 
 bool delete_task(int task_id,char *error)
 {
+
     auto a=task::id_to_location.find(task_id);
     if(a==task::id_to_location.end())
     {
@@ -369,8 +412,7 @@ bool delete_task(int task_id,char *error)
     int loca=a->second;
     for(int i:tasks[loca].alarm_id)
     {
-        if(!delete_alarm(i,error,0))
-            return 0;
+        delete_alarm(i,error,0);
     }
     task::id_to_location.erase(a);
     tasks[loca].valid=0;
@@ -379,9 +421,9 @@ bool delete_task(int task_id,char *error)
     return 1;
 }
 
-bool delete_alarm(int alarm_id,char* error,int way=1)
+bool delete_alarm(int alarm_id1,char* error,int way=1)
 {
-    auto a=alarm::id_to_location.find(alarm_id);
+    auto a=alarm::id_to_location.find(alarm_id1);
     if(a==alarm::id_to_location.end())
     {
         strcpy(error,"alarm not found");
@@ -392,19 +434,21 @@ bool delete_alarm(int alarm_id,char* error,int way=1)
     alarms[loca].valid=0;
     alarm::real_alarm_number--;
     alarm::empty_location.insert(loca);
-    alarm_qq t{alarms[loca].get_alarmtime(),alarms[loca].get_alarm_id()};
+    alarm_qq t{alarms[loca].get_alarmtime(),alarm_id1};
     auto b=alarm_queue.find(t);
     if(b==alarm_queue.end())
     {
         strcpy(error,"alarm not found in set");
-        return 0;
     }
-    alarm_queue.erase(b);
+    else
+    {
+        alarm_queue.erase(b);
+    }
     if(way)
     {
         int tid=alarms[loca].get_task_id();
         auto k=find(tasks[task::id_to_location[tid]].alarm_id.begin(),
-                      tasks[task::id_to_location[tid]].alarm_id.end(),alarm_id);
+                      tasks[task::id_to_location[tid]].alarm_id.end(),alarm_id1);
         tasks[task::id_to_location[tid]].alarm_id.erase(k);
     }
     return 1;
@@ -414,7 +458,7 @@ bool filter(int type,int mode,char *error)
 {
     for(int i=0;i<task::task_number_vec;i++)
     {
-        if(tasks[i].valid&&((tasks[i].type&type)==type)&&((tasks[i].mode&mode)==mode))
+        if(tasks[i].valid&&((tasks[i].type&type)==tasks[i].type)&&((tasks[i].mode&mode)==tasks[i].mode))
         {
             tasks[i].show=1; 
         }
@@ -423,6 +467,7 @@ bool filter(int type,int mode,char *error)
             tasks[i].show=0;
         }
     }
+    return 1;
 }
 
 int comparetim(const struct tm& aa,const struct tm& bb,int way=1)
@@ -472,7 +517,7 @@ int comparetim(const struct tm& aa,const struct tm& bb,int way=1)
         }
     }
 
-bool update(char *error)
+bool update_task(char *error)
 {
     time_t current=time(NULL);
     struct tm *tim=localtime(&current);
@@ -484,14 +529,26 @@ bool update(char *error)
             if(comparetim(endtime,*tim))
             {
                 tasks[i].mode=OVERDUE;
+                overdue++;
             }
         }
     }
+    return 1;
 
 }
 
 bool sort_time(const task& a,const task& b)
 {
+    int ma=a.get_mode();
+    int mb=b.get_mode();
+    if(ma==COMPLETE&&mb!=COMPLETE)
+    {
+        return false;
+    }
+    else if(ma!=COMPLETE&&mb==COMPLETE)
+    {
+        return true;
+    }
     struct tm aa=a.get_endtime();
     struct tm bb=b.get_endtime();
     int t=comparetim(aa,bb);
@@ -507,6 +564,16 @@ bool sort_time(const task& a,const task& b)
 
 bool sort_urgent(const task& a,const task& b)
 {
+    int ma=a.get_mode();
+    int mb=b.get_mode();
+    if(ma==COMPLETE&&mb!=COMPLETE)
+    {
+        return false;
+    }
+    else if(ma!=COMPLETE&&mb==COMPLETE)
+    {
+        return true;
+    }
     if(a.get_urgent()==b.get_urgent())
     {
         struct tm aa=a.get_endtime();
@@ -522,7 +589,7 @@ bool sort_urgent(const task& a,const task& b)
     }
 }
 
-bool sort_task(int way,char *error)
+void sort_task(int way)
 {
     switch(way)
     {
@@ -550,11 +617,9 @@ bool sort_task(int way,char *error)
             task::empty_location.insert(i);
         }
     }
-
-    return 1;
 }
 
-bool save()
+bool save(char* err_buf)
 {
     if(user_change)
     {
@@ -591,7 +656,7 @@ bool save()
     ccid=cid;
     string filename="data_of_id"+ccid+".txt";
     ofstream outfile(filename,ios::out);
-    outfile<<overdue<<' ';
+    outfile<<overdue<<' '<<complete_num<<' ';
     for(int i=0;i<5;i++)
         outfile<<last_5_complete[i]<<' ';
     outfile<<endl;
@@ -617,7 +682,7 @@ bool load(string filename,char* error)
     infile.open(filename,ios::in);
     if(infile)
     {
-        infile>>overdue;
+        infile>>overdue>>complete_num;
         for(int i=0;i<5;i++)
             infile>>last_5_complete[i];
         infile>>task::task_number>>task::task_number_vec>>task::real_task_number;
@@ -665,55 +730,69 @@ bool load(string filename,char* error)
     alarm_work=1;
     return 1;
 }
-/*string email_account="webrunpku",
-    string email_password="HZ4suXv6ZEvMeDzp",*/
-bool signup(string username,string password,char *error,colors color={0,0,0})
+
+bool signup(string username,string password,char *error)
 {
-    
-        ifstream infile;
-        infile.open("user_data.txt",ios::in);
-        vector<user> users;
-        if(infile)
-        {
-            infile>>user::user_number;
-            user us;
-            for(int i=0;i<user::user_number;i++)
-            {
-                infile>>us;
-                users.push_back(us);
-                string nn=us.get_name();
-                if(nn==username)
-                {   
-                    //需要做出提示用户名已存在
-                    strcpy(error,"username already exists");
-                    infile.close();
-                    return 0;
-                }
-            }
-            infile.close();
-        }
-        else
-        {
-            //如果是还没有注册过任何用户返回0是正常的，因为还没有保存过（没有创建文件）
-            strcpy(error,"all user data not found");
-        }
-        user::user_number++;
-        user newuse(user::user_number,username,password,"webrunpku","HZ4suXv6ZEvMeDzp",color);
-        users.push_back(newuse);
-        ofstream outf("user_data.txt",ios::out);
-        outf<<user::user_number<<endl;
+    if(username=="")
+    {
+        strcpy(error,"用户名不能为空！");
+        return 0;
+    }
+
+    ifstream infile;
+    infile.open("user_data.txt",ios::in);
+    vector<user> users;
+    if(infile)
+    {
+        infile>>user::user_number;
+        user us;
         for(int i=0;i<user::user_number;i++)
         {
-            outf<<users[i];
+            infile>>us;
+            users.push_back(us);
+            string nn=us.get_name();
+            if(nn==username)
+            {
+                //需要做出提示用户名已存在
+                strcpy(error,"手慢无，该用户名已存在！");
+                infile.close();
+                return 0;
+            }
         }
-        outf.close();
-        return 1;
+        infile.close();
+    }
+    else
+    {
+        //如果是还没有注册过任何用户返回0是正常的，因为还没有保存过（没有创建文件）
+        strcpy(error,"all user data not found");
+    }
+    if(password=="")
+    {
+        strcpy(error,"哎嘛心真大，密码忘设了！");
+        return 0;
+    }
+    user::user_number++;
+    user newuse(user::user_number,username,password,"webrunpku","HZ4suXv6ZEvMeDzp");
+    users.push_back(newuse);
+    ofstream outf("user_data.txt",ios::out);
+    outf<<user::user_number<<endl;
+    for(int i=0;i<user::user_number;i++)
+    {
+        outf<<users[i];
+    }
+    outf.close();
+    return 1;
 }
-
 
 
 int  login(string username,string password,char *error)
 {
+    if(username=="")
+    {
+        strcpy(error,"空名吗，有意思！");
+        return -4;
+    }
+
         u_name.clear();
         ifstream infile;
         infile.open("user_data.txt",ios::in);
@@ -730,10 +809,16 @@ int  login(string username,string password,char *error)
                 {
                     if(username==us.get_name())
                     {
+                        if(password=="")
+                        {
+                            strcpy(error,"支付可以免密，登录不行！");
+                            infile.close();
+                            return -5;
+                        }
                         if(password!=us.get_password())
                         {
                             //应提示密码错误
-                            strcpy(error,"password incorrect");
+                            strcpy(error,"（第一时间赶来嘲笑）密码错了哈哈哈！");
                             infile.close();
                             return -1;
                         }
@@ -750,13 +835,13 @@ int  login(string username,string password,char *error)
         else
         {
             //应提示没有注册，请先注册
-            strcpy(error,"没有注册，请先注册");
+            strcpy(error,"亲您还不是咱家会员，去免费注册一个吧！");
             return -2;
         }
     if(!flag)
     {
         //应提示用户名不存在
-        strcpy(error,"用户名不存在");
+        strcpy(error,"亲您还不是咱家会员，去免费注册一个吧！");
         return -3;
     }
     char cid=char(curr_user.get_id()+'0');
@@ -769,186 +854,10 @@ int  login(string username,string password,char *error)
 }
 
 
-
-
-
-
-
-
-
-
-
-void LogInTable(){//登录界面
-    Widget *Login_Window = new Widget();
-    Login_Window->setWindowTitle("PKU TimeManagement Master");
-    Login_Window->setFixedSize(350, 550);
-    //
-    QLineEdit *textInput1 = new QLineEdit(Login_Window);
-    textInput1->setPlaceholderText("Your name here");
-    textInput1->setFixedSize(260,30);
-    textInput1->setStyleSheet("color: white; background: rgba(255,255,255,0);");
-    QLineEdit *textInput2= new QLineEdit(Login_Window);
-    textInput2->setPlaceholderText("Your password here");
-    textInput2->setFixedSize(260,30);
-    textInput2->setStyleSheet("color: white; background: rgba(255,255,255,0);");
-
-
-
-    //
-    QPushButton *button1 = new QPushButton("",Login_Window);
-    button1->setFixedSize(260,37);
-    button1->setStyleSheet("color: white; background: rgba(255,255,255,0);");
-
-    QPushButton *button2 = new QPushButton("",Login_Window);
-    button2->setFixedSize(260,42);
-    button2->setStyleSheet("color: white; background: rgba(255,255,255,0);");
-
-
-    //
-    QVBoxLayout *mainlayout=new QVBoxLayout(Login_Window);
-    mainlayout->addWidget(textInput1);
-    mainlayout->addWidget(textInput2);
-    mainlayout->addWidget(button1);
-    mainlayout->addWidget(button2);
-    mainlayout->setContentsMargins(40,130,20,20);
-    mainlayout->setSpacing(15);
-
-
-
-    Login_Window->setLayout(mainlayout);
-    QLabel* bgLabel = new QLabel(Login_Window);
-    bgLabel->setPixmap(QPixmap(":/bg.jpg"));
-    bgLabel->setScaledContents(true);
-    bgLabel->resize(Login_Window->size());
-    bgLabel->lower();
-    bgLabel->setAttribute(Qt::WA_TranslucentBackground);
-    bgLabel->setStyleSheet("border-image: url(bg.jpg); background: transparent;");
-
-
-
-    Login_Window->show();
-
-
-
-    QObject::connect(button1, &QPushButton::clicked, [=]() {
-        // 在Lambda内部获取输入框内容并调用槽函数
-        QString username = textInput1->text();  // 假设text1是QLineEdit
-        QString password = textInput2->text();
-        Login_Window->onButtonClicked_login(username.toStdString(), password.toStdString());
-    });
-    QObject::connect(button2,&QPushButton::clicked,Login_Window,&Widget::onButtonClicked_register);
-}
-
-void RegisterTable(){
-    Widget *Register_Window = new Widget();
-    Register_Window->setWindowTitle("PKU TimeManagement Master");
-    Register_Window->setFixedSize(350, 750);
-    //
-    QLineEdit *textInput1 = new QLineEdit(Register_Window);
-    textInput1->setPlaceholderText("Your name here");
-    textInput1->setFixedSize(260,30);
-    textInput1->setStyleSheet("color: white; background: rgba(255,255,255,0);");
-    QLineEdit *textInput2= new QLineEdit(Register_Window);
-    textInput2->setPlaceholderText("Your password here");
-    textInput2->setFixedSize(260,30);
-    textInput2->setStyleSheet("color: white; background: rgba(255,255,255,0);");
-    QLineEdit *textInput3= new QLineEdit(Register_Window);
-    textInput3->setPlaceholderText("RGB");
-    textInput3->setFixedSize(260,30);
-    textInput3->setStyleSheet("color: white; background: rgba(255,255,255,0);");
-    QLineEdit *textInput4= new QLineEdit(Register_Window);
-    textInput4->setPlaceholderText("Your email account password here");
-    textInput4->setFixedSize(300,30);
-    textInput4->setStyleSheet("color: white; background: rgba(255,255,255,0);");
-    QLineEdit *textInput5= new QLineEdit(Register_Window);
-    textInput5->setPlaceholderText("Your email account password here");
-    textInput5->setFixedSize(300,30);
-    textInput5->setStyleSheet("color: white; background: rgba(255,255,255,0);");
-    QPushButton *button1 = new QPushButton("",Register_Window);
-    button1->setFixedSize(260,37);
-    button1->setStyleSheet("color: white; background: rgba(255,255,255,0);");
-    QPushButton *button2 = new QPushButton("",Register_Window);
-    button2->setFixedSize(260,37);
-    button2->setStyleSheet("color: white; background: rgba(255,255,255,0);");
-
-    QVBoxLayout *mainlayout=new QVBoxLayout(Register_Window);
-    mainlayout->addWidget(textInput1);
-    mainlayout->addWidget(textInput2);
-    mainlayout->addWidget(textInput3);
-    mainlayout->addWidget(textInput4);
-    mainlayout->addWidget(button1);
-    mainlayout->setContentsMargins(40,130,20,20);//undone
-    mainlayout->setSpacing(15);//undone
-    Register_Window->setLayout(mainlayout);
-
-    QLabel* bgLabel1 = new QLabel(Register_Window);
-    bgLabel1->setPixmap(QPixmap(":/"));//undone
-    bgLabel1->setScaledContents(true);
-    bgLabel1->resize(Register_Window->size());
-    bgLabel1->lower();
-    bgLabel1->setAttribute(Qt::WA_TranslucentBackground);
-    bgLabel1->setStyleSheet("border-image: url(); background: transparent;");//undone
-
-
-
-    Register_Window->show();
-
-
-
-    QObject::connect(button1, &QPushButton::clicked, [=]() {
-        // 在Lambda内部获取输入框内容并调用槽函数
-        QString username = textInput1->text();  // 假设text1是QLineEdit
-        QString password = textInput2->text();
-        QString color1 = textInput3->text();
-        QString color2 = textInput4->text();
-        QString color3 = textInput5->text();
-        //把QString类转成colors类
-        string color11 = color1.toStdString();
-        string color22 = color2.toStdString();
-        string color33 = color3.toStdString();
-
-        colors color={color11[0]-'0',color22[0]-'0',color33[0]-'0'};
-        Register_Window->onButtonClicked_confirm(username.toStdString(), password.toStdString(),color);
-    });
-
-    QObject::connect(button2,&QPushButton::clicked,Register_Window,&::Widget::onButtonClicked_login);
-}
-
-void MainTable(){
-
-}
-
-
-
 //notes:
 //1.所有输入中不要有空格（先不做错误检测，输入测试时手动避免）
 //2.一定要调用save
 //3.每次刷新update
 //4.新载入数据最好重过一次filter和sort
 //5.暂不支持用户注销
-//6.展示时注意valid字段（member是name!="empty"）
-//7.所有文件GBK编码
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//6.所有文件UTF-8编码

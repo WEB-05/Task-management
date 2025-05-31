@@ -1,0 +1,901 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Detailed</class>
+ <widget class="QWidget" name="Detailed">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>842</width>
+    <height>495</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="res.qrc">
+    <normaloff>:/images/to_do_list_fzl_icon.ico</normaloff>:/images/to_do_list_fzl_icon.ico</iconset>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>20</y>
+     <width>61</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>提醒邮箱：</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>240</y>
+     <width>61</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>提醒时间：</string>
+   </property>
+  </widget>
+  <widget class="QScrollArea" name="member_area">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>50</y>
+     <width>291</width>
+     <height>191</height>
+    </rect>
+   </property>
+   <property name="widgetResizable">
+    <bool>true</bool>
+   </property>
+   <widget class="QWidget" name="scrollAreaWidgetContents">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>289</width>
+      <height>189</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QScrollArea" name="time_area">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>280</y>
+     <width>291</width>
+     <height>181</height>
+    </rect>
+   </property>
+   <property name="widgetResizable">
+    <bool>true</bool>
+   </property>
+   <widget class="QWidget" name="scrollAreaWidgetContents_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>289</width>
+      <height>179</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>723</x>
+     <y>446</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">  /* 默认状态：蓝框白底蓝字 */
+    QPushButton {
+        background-color: white;
+        color: red;
+        border: 2px solid red;
+        border-radius: 15px;
+        padding: 2px 2px;
+
+		font-size:14px;
+    }
+
+    /* 悬停状态：蓝底白字 */
+    QPushButton:hover {
+        background-color: red;
+        color: white;
+    }
+
+    /* 按下状态：深蓝底白字 */
+    QPushButton:pressed {
+        background-color: rgb(143, 0, 0);
+        color: white;
+    }</string>
+   </property>
+   <property name="text">
+    <string>关闭</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>30</y>
+     <width>61</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>任务名称：</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>30</y>
+     <width>141</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+    QLineEdit {
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        padding: 5px 10px;
+        background: #f9f9f9;
+        font-size: 14px;
+     	color:black
+    }
+    QLineEdit:focus {
+        border-color: #2196F3;
+        background: white;
+    }
+    QLineEdit:disabled {
+        background: #eee;
+        color: #777;
+    }</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>30</y>
+     <width>51</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">  /* 默认状态：蓝框白底蓝字 */
+    QPushButton {
+        background-color: white;
+        color: #2196F3;
+        border: 2px solid #2196F3;
+        border-radius: 10px;
+        padding: 2px 2px;
+
+		font-size:12px;
+    }
+
+    /* 悬停状态：蓝底白字 */
+    QPushButton:hover {
+        background-color: #2196F3;
+        color: white;
+    }
+
+    /* 按下状态：深蓝底白字 */
+    QPushButton:pressed {
+        background-color: #1976D2;
+        color: white;
+    }</string>
+   </property>
+   <property name="text">
+    <string>修改</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>90</y>
+     <width>61</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>任务描述：</string>
+   </property>
+  </widget>
+  <widget class="QPlainTextEdit" name="plainTextEdit">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>90</y>
+     <width>211</width>
+     <height>161</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+    QPlainTextEdit {
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        padding: 5px 10px;
+        background: #f9f9f9;
+        font-size: 14px;
+     	color:black
+    }
+    QPlainTextEdit :focus {
+        border-color:  #2196F3;
+        background: white;
+    }
+    QPlainTextEdit :disabled {
+        background: #eee;
+        color: #777;
+    }</string>
+   </property>
+  </widget>
+  <widget class="QDateTimeEdit" name="dateTimeEdit">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>270</y>
+     <width>201</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">.QTimeEdit[timeEditStyle=&quot;commom&quot;]
+{
+
+    border-radius:2px;
+    border:1px solid #cccccc;
+}
+
+.QTimeEdit[timeEditStyle=&quot;commom&quot;]:hover,
+.QTimeEdit[timeEditStyle=&quot;commom&quot;]:focus
+{
+    border-radius:2px;
+    border:1px solid #0f6dbe;
+}
+
+.QTimeEdit[timeEditStyle=&quot;commom&quot;]::down-button
+{
+    border:none;
+    width:30px;
+    background-color:white;
+}
+
+
+.QTimeEdit[timeEditStyle=&quot;commom&quot;]::up-button
+{
+    border:none;
+    width:30px;
+    background-color:white;
+}
+
+/***********向下箭头**********/
+.QTimeEdit[timeEditStyle = &quot;commom&quot;]::down-arrow {
+    image:url(:/myicon/image/down.png);
+}
+
+/**********向上箭头**********/
+.QTimeEdit[timeEditStyle = &quot;commom&quot;]::up-arrow {
+    image:url(:/myicon/image//up.png);
+}</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_3">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>140</y>
+     <width>51</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">  /* 默认状态：蓝框白底蓝字 */
+    QPushButton {
+        background-color: white;
+        color: #2196F3;
+        border: 2px solid #2196F3;
+        border-radius: 10px;
+        padding: 2px 2px;
+
+		font-size:12px;
+    }
+
+    /* 悬停状态：蓝底白字 */
+    QPushButton:hover {
+        background-color: #2196F3;
+        color: white;
+    }
+
+    /* 按下状态：深蓝底白字 */
+    QPushButton:pressed {
+        background-color: #1976D2;
+        color: white;
+    }</string>
+   </property>
+   <property name="text">
+    <string>修改</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_4">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>310</y>
+     <width>51</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">  /* 默认状态：蓝框白底蓝字 */
+    QPushButton {
+        background-color: white;
+        color: #2196F3;
+        border: 2px solid #2196F3;
+        border-radius: 10px;
+        padding: 2px 2px;
+
+		font-size:12px;
+    }
+
+    /* 悬停状态：蓝底白字 */
+    QPushButton:hover {
+        background-color: #2196F3;
+        color: white;
+    }
+
+    /* 按下状态：深蓝底白字 */
+    QPushButton:pressed {
+        background-color: #1976D2;
+        color: white;
+    }</string>
+   </property>
+   <property name="text">
+    <string>修改</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>280</y>
+     <width>54</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>截止时间：</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>368</y>
+     <width>54</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>紧急程度：</string>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="spinBox">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>358</y>
+     <width>51</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>10</number>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_5">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>400</y>
+     <width>51</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">  /* 默认状态：蓝框白底蓝字 */
+    QPushButton {
+        background-color: white;
+        color: #2196F3;
+        border: 2px solid #2196F3;
+        border-radius: 10px;
+        padding: 2px 2px;
+
+		font-size:12px;
+    }
+
+    /* 悬停状态：蓝底白字 */
+    QPushButton:hover {
+        background-color: #2196F3;
+        color: white;
+    }
+
+    /* 按下状态：深蓝底白字 */
+    QPushButton:pressed {
+        background-color: #1976D2;
+        color: white;
+    }</string>
+   </property>
+   <property name="text">
+    <string>修改</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>368</y>
+     <width>54</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>任务类型：</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>358</y>
+     <width>71</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"> QComboBox {
+        border: 1px solid #E0E0E0;
+        border-radius: 15px;
+        padding: 8px 8px 8px 15px;
+        background: white;
+        color: #333;
+    }
+    
+    QComboBox:hover {
+        border: 1px solid #2196F3;
+        box-shadow: 0 1px 3px rgba(33,150,243,0.3);
+    }
+    
+    QComboBox::drop-down {
+        subcontrol-origin: padding;
+        subcontrol-position: center right;
+        width: 15px;
+        border: none;
+    }
+    
+    
+    QComboBox QAbstractItemView {
+        border: none;
+        border-radius: 8px;
+        background: white;
+        selection-background-color: #2196F3;
+        selection-color: white;
+        outline: none;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        margin: 4px 0;
+    }</string>
+   </property>
+   <item>
+    <property name="text">
+     <string>工作</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>学习</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>生活</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>社团</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>家庭</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>其他</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QPushButton" name="pushButton_6">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>400</y>
+     <width>51</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">  /* 默认状态：蓝框白底蓝字 */
+    QPushButton {
+        background-color: white;
+        color: #2196F3;
+        border: 2px solid #2196F3;
+        border-radius: 10px;
+        padding: 2px 2px;
+
+		font-size:12px;
+    }
+
+    /* 悬停状态：蓝底白字 */
+    QPushButton:hover {
+        background-color: #2196F3;
+        color: white;
+    }
+
+    /* 按下状态：深蓝底白字 */
+    QPushButton:pressed {
+        background-color: #1976D2;
+        color: white;
+    }</string>
+   </property>
+   <property name="text">
+    <string>修改</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>430</y>
+     <width>81</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>提醒方式：</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="alarm_way">
+   <property name="geometry">
+    <rect>
+     <x>109</x>
+     <y>435</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="new_email_name">
+   <property name="geometry">
+    <rect>
+     <x>620</x>
+     <y>70</y>
+     <width>201</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+    QLineEdit {
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        padding: 1px 1px;
+        background: #f9f9f9;
+        font-size: 14px;
+     	color:black
+    }
+    QLineEdit:focus {
+        border-color:  #2196F3;
+        background: white;
+    }
+    QLineEdit:disabled {
+        background: #eee;
+        color: #777;
+    }</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="placeholderText">
+    <string>请输入称呼</string>
+   </property>
+  </widget>
+  <widget class="QDateEdit" name="dateEdit_2">
+   <property name="geometry">
+    <rect>
+     <x>640</x>
+     <y>290</y>
+     <width>111</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignCenter</set>
+   </property>
+   <property name="dateTime">
+    <datetime>
+     <hour>16</hour>
+     <minute>0</minute>
+     <second>0</second>
+     <year>2025</year>
+     <month>1</month>
+     <day>1</day>
+    </datetime>
+   </property>
+   <property name="date">
+    <date>
+     <year>2025</year>
+     <month>1</month>
+     <day>1</day>
+    </date>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="add_alarm_time">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>390</y>
+     <width>91</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">  /* 默认状态：蓝框白底蓝字 */
+    QPushButton {
+        background-color: white;
+        color: #2196F3;
+        border: 2px solid #2196F3;
+        border-radius: 20px;
+        padding: 2px 2px;
+
+		font-size:12px;
+    }
+
+    /* 悬停状态：蓝底白字 */
+    QPushButton:hover {
+        background-color: #2196F3;
+        color: white;
+    }
+
+    /* 按下状态：深蓝底白字 */
+    QPushButton:pressed {
+        background-color: #1976D2;
+        color: white;
+    }
+QPushButton:disabled {
+    /* 禁用状态：灰框灰底灰字 */
+    background-color: #f5f5f5;
+    color: #808080 ;
+    border: 2px solid #9e9e9e;
+}</string>
+   </property>
+   <property name="text">
+    <string>添加提醒时间</string>
+   </property>
+  </widget>
+  <widget class="QTimeEdit" name="timeEdit_2">
+   <property name="geometry">
+    <rect>
+     <x>640</x>
+     <y>340</y>
+     <width>111</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignCenter</set>
+   </property>
+   <property name="showGroupSeparator" stdset="0">
+    <bool>true</bool>
+   </property>
+   <property name="dateTime">
+    <datetime>
+     <hour>0</hour>
+     <minute>0</minute>
+     <second>0</second>
+     <year>2025</year>
+     <month>1</month>
+     <day>1</day>
+    </datetime>
+   </property>
+   <property name="date">
+    <date>
+     <year>2025</year>
+     <month>1</month>
+     <day>1</day>
+    </date>
+   </property>
+   <property name="maximumDateTime">
+    <datetime>
+     <hour>15</hour>
+     <minute>59</minute>
+     <second>59</second>
+     <year>2040</year>
+     <month>1</month>
+     <day>1</day>
+    </datetime>
+   </property>
+   <property name="minimumDateTime">
+    <datetime>
+     <hour>16</hour>
+     <minute>0</minute>
+     <second>0</second>
+     <year>2020</year>
+     <month>1</month>
+     <day>1</day>
+    </datetime>
+   </property>
+   <property name="maximumDate">
+    <date>
+     <year>2040</year>
+     <month>1</month>
+     <day>1</day>
+    </date>
+   </property>
+   <property name="minimumDate">
+    <date>
+     <year>2020</year>
+     <month>1</month>
+     <day>1</day>
+    </date>
+   </property>
+   <property name="currentSection">
+    <enum>QDateTimeEdit::Section::MinuteSection</enum>
+   </property>
+   <property name="currentSectionIndex">
+    <number>1</number>
+   </property>
+   <property name="time">
+    <time>
+     <hour>0</hour>
+     <minute>0</minute>
+     <second>0</second>
+    </time>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="add_email">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>190</y>
+     <width>91</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">  /* 默认状态：蓝框白底蓝字 */
+    QPushButton {
+        background-color: white;
+        color: #2196F3;
+        border: 2px solid #2196F3;
+        border-radius: 20px;
+        padding: 2px 2px;
+
+		font-size:12px;
+    }
+
+    /* 悬停状态：蓝底白字 */
+    QPushButton:hover {
+        background-color: #2196F3;
+        color: white;
+    }
+
+    /* 按下状态：深蓝底白字 */
+    QPushButton:pressed {
+        background-color: #1976D2;
+        color: white;
+    }
+QPushButton:disabled {
+    /* 禁用状态：灰框灰底灰字 */
+    background-color: #f5f5f5;
+    color: #808080 ;
+    border: 2px solid #9e9e9e;
+}</string>
+   </property>
+   <property name="text">
+    <string>添加提醒邮箱</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="new_email_address">
+   <property name="geometry">
+    <rect>
+     <x>620</x>
+     <y>130</y>
+     <width>201</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+    QLineEdit {
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        padding: 1px 1px;
+        background: #f9f9f9;
+        font-size: 14px;
+     	color:black
+    }
+    QLineEdit:focus {
+        border-color:  #2196F3;
+        background: white;
+    }
+    QLineEdit:disabled {
+        background: #eee;
+        color: #777;
+    }</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="placeholderText">
+    <string>请输入邮箱</string>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
+ <connections/>
+</ui>

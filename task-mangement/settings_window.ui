@@ -1,0 +1,927 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Settings_Window</class>
+ <widget class="QWidget" name="Settings_Window">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>979</width>
+    <height>591</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Widget</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+    QLineEdit {
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        padding: 5px 10px;
+        background: #f9f9f9;
+        font-size: 14px;
+     	color:black
+    }
+    QLineEdit:focus {
+        border-color: #4CAF50;
+        background: white;
+    }
+    QLineEdit:disabled {
+        background: #eee;
+        color: #777;
+    }</string>
+  </property>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>181</width>
+     <height>131</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton 
+{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;
+
+color:rgb(255, 243, 181);
+font: 25pt &quot;FZYaoTi&quot;;
+}
+    QPushButton:hover {
+        color: black;
+    }
+    QPushButton:pressed {
+        color: rgb(255, 19, 133);
+    }</string>
+   </property>
+   <property name="text">
+    <string>查看任务</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>130</y>
+     <width>181</width>
+     <height>131</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton 
+{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;
+
+color:rgb(255, 243, 181);
+font: 25pt &quot;FZYaoTi&quot;;
+}
+    QPushButton:hover {
+        color: black;
+    }
+    QPushButton:pressed {
+        color: rgb(255, 19, 133);
+    }</string>
+   </property>
+   <property name="text">
+    <string>新建任务</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_3">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>260</y>
+     <width>181</width>
+     <height>131</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton 
+{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;
+
+color:rgb(255, 243, 181);
+font: 25pt &quot;FZYaoTi&quot;;
+}
+    QPushButton:hover {
+        color: black;
+    }
+    QPushButton:pressed {
+        color: rgb(255, 19, 133);
+    }</string>
+   </property>
+   <property name="text">
+    <string>反馈总结</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_4">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>390</y>
+     <width>181</width>
+     <height>131</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton 
+{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;
+
+color:rgb(255, 19, 133);
+font: 25pt &quot;FZYaoTi&quot;;
+}
+    QPushButton:hover {
+        color: black;
+    }
+    QPushButton:pressed {
+        color: rgb(255, 19, 133);
+    }
+</string>
+   </property>
+   <property name="text">
+    <string>个人设置</string>
+   </property>
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="autoDefault">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_5">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>520</y>
+     <width>181</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton 
+{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;
+
+color:rgb(255, 243, 181);
+font: 25pt &quot;FZYaoTi&quot;;
+}
+    QPushButton:hover {
+        color: black;
+    }
+    QPushButton:pressed {
+        color: rgb(255, 19, 133);
+    }</string>
+   </property>
+   <property name="text">
+    <string>退出程序</string>
+   </property>
+  </widget>
+  <widget class="QSlider" name="horizontalSlider_3">
+   <property name="geometry">
+    <rect>
+     <x>667</x>
+     <y>412</y>
+     <width>131</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QSlider::groove:horizontal {
+    height: 5px;
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #BBDEFB, stop:1 #E3F2FD);
+    border-radius: 5px;
+}
+
+QSlider::handle:horizontal {
+    width: 5px;
+    height: 15px;
+    margin: -5px 0;
+    background: qradialgradient(cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, 
+                               stop:0 #64B5F6, stop:1 #1976D2);
+    border: 1px solid #ffffff;
+    border-radius: 3px;
+}
+
+QSlider::sub-page:horizontal {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #42A5F5, stop:1 #90CAF9);
+    border-radius: 3px;
+}</string>
+   </property>
+   <property name="maximum">
+    <number>255</number>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Orientation::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QSlider" name="horizontalSlider_4">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>340</y>
+     <width>261</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>261</width>
+     <height>20</height>
+    </size>
+   </property>
+   <property name="cursor">
+    <cursorShape>ArrowCursor</cursorShape>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LayoutDirection::LeftToRight</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QSlider::groove:horizontal {
+    height: 5px;
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #BBDEFB, stop:1 #E3F2FD);
+    border-radius: 5px;
+}
+
+QSlider::handle:horizontal {
+    width: 5px;
+    height: 15px;
+    margin: -5px 0;
+    background: qradialgradient(cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, 
+                               stop:0 #64B5F6, stop:1 #1976D2);
+    border: 1px solid #ffffff;
+    border-radius: 3px;
+}
+
+QSlider::sub-page:horizontal {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #42A5F5, stop:1 #90CAF9);
+    border-radius: 3px;
+}</string>
+   </property>
+   <property name="maximum">
+    <number>80</number>
+   </property>
+   <property name="pageStep">
+    <number>4</number>
+   </property>
+   <property name="value">
+    <number>80</number>
+   </property>
+   <property name="sliderPosition">
+    <number>80</number>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Orientation::Horizontal</enum>
+   </property>
+   <property name="invertedAppearance">
+    <bool>false</bool>
+   </property>
+   <property name="invertedControls">
+    <bool>false</bool>
+   </property>
+   <property name="tickPosition">
+    <enum>QSlider::TickPosition::NoTicks</enum>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_7">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>20</y>
+     <width>281</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+    QLineEdit {
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        padding: 5px 10px;
+        background: #f9f9f9;
+        font-size: 14px;
+     	color:black
+    }
+    QLineEdit:focus {
+        border-color: #4CAF50;
+        background: white;
+    }
+    QLineEdit:disabled {
+        background: #eee;
+        color: #777;
+    }</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="placeholderText">
+    <string>请输入新用户名</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_9">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>100</y>
+     <width>281</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::EchoMode::Password</enum>
+   </property>
+   <property name="placeholderText">
+    <string>请输入新密码</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_6">
+   <property name="geometry">
+    <rect>
+     <x>710</x>
+     <y>100</y>
+     <width>161</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">  /* 默认状态：蓝框白底蓝字 */
+    QPushButton {
+        background-color: white;
+        color: #2196F3;
+        border: 2px solid #2196F3;
+        border-radius: 20px;
+        padding: 2px 2px;
+
+		font-size:17px;
+    }
+
+    /* 悬停状态：蓝底白字 */
+    QPushButton:hover {
+        background-color: #2196F3;
+        color: white;
+    }
+
+    /* 按下状态：深蓝底白字 */
+    QPushButton:pressed {
+        background-color: #1976D2;
+        color: white;
+    }</string>
+   </property>
+   <property name="text">
+    <string>确认修改</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_7">
+   <property name="geometry">
+    <rect>
+     <x>710</x>
+     <y>20</y>
+     <width>161</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">  /* 默认状态：蓝框白底蓝字 */
+    QPushButton {
+        background-color: white;
+        color: #2196F3;
+        border: 2px solid #2196F3;
+        border-radius: 20px;
+        padding: 2px 2px;
+
+		font-size:17px;
+    }
+
+    /* 悬停状态：蓝底白字 */
+    QPushButton:hover {
+        background-color: #2196F3;
+        color: white;
+    }
+
+    /* 按下状态：深蓝底白字 */
+    QPushButton:pressed {
+        background-color: #1976D2;
+        color: white;
+    }</string>
+   </property>
+   <property name="text">
+    <string>确认修改</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_11">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>180</y>
+     <width>281</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="placeholderText">
+    <string>请输入邮箱</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_8">
+   <property name="geometry">
+    <rect>
+     <x>710</x>
+     <y>180</y>
+     <width>161</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="tabletTracking">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">  /* 默认状态：蓝框白底蓝字 */
+    QPushButton {
+        background-color: white;
+        color: #2196F3;
+        border: 2px solid #2196F3;
+        border-radius: 20px;
+        padding: 2px 2px;
+
+		font-size:17px;
+    }
+
+    /* 悬停状态：蓝底白字 */
+    QPushButton:hover {
+        background-color: #2196F3;
+        color: white;
+    }
+
+    /* 按下状态：深蓝底白字 */
+    QPushButton:pressed {
+        background-color: #1976D2;
+        color: white;
+    }</string>
+   </property>
+   <property name="text">
+    <string>确认提交</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_9">
+   <property name="geometry">
+    <rect>
+     <x>710</x>
+     <y>260</y>
+     <width>161</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">  /* 默认状态：蓝框白底蓝字 */
+    QPushButton {
+        background-color: white;
+        color: #2196F3;
+        border: 2px solid #2196F3;
+        border-radius: 20px;
+        padding: 2px 2px;
+
+		font-size:17px;
+    }
+
+    /* 悬停状态：蓝底白字 */
+    QPushButton:hover {
+        background-color: #2196F3;
+        color: white;
+    }
+
+    /* 按下状态：深蓝底白字 */
+    QPushButton:pressed {
+        background-color: #1976D2;
+        color: white;
+    }</string>
+   </property>
+   <property name="text">
+    <string>确认提交</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_13">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>260</y>
+     <width>281</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::EchoMode::Password</enum>
+   </property>
+   <property name="placeholderText">
+    <string>请输入邮箱密码</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>332</y>
+     <width>71</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>页面亮度：</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>201</x>
+     <y>409</y>
+     <width>81</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>背景颜色：</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>277</x>
+     <y>410</y>
+     <width>69</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>R：</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>457</x>
+     <y>410</y>
+     <width>69</width>
+     <height>19</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>G:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>637</x>
+     <y>410</y>
+     <width>69</width>
+     <height>19</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>B：</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>460</y>
+     <width>501</width>
+     <height>111</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>感谢您使用本软件！
+开发者： 23元培 王恩博
+              24信科 曾浩轩 梁梓涵
+</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>30</y>
+     <width>101</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>修改用户名：</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>100</y>
+     <width>81</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>修改密码：</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_9">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>190</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>你的邮箱：</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_10">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>270</y>
+     <width>71</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>邮箱密码：</string>
+   </property>
+  </widget>
+  <widget class="QSlider" name="horizontalSlider_5">
+   <property name="geometry">
+    <rect>
+     <x>487</x>
+     <y>410</y>
+     <width>131</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QSlider::groove:horizontal {
+    height: 5px;
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #BBDEFB, stop:1 #E3F2FD);
+    border-radius: 5px;
+}
+
+QSlider::handle:horizontal {
+    width: 5px;
+    height: 15px;
+    margin: -5px 0;
+    background: qradialgradient(cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, 
+                               stop:0 #64B5F6, stop:1 #1976D2);
+    border: 1px solid #ffffff;
+    border-radius: 3px;
+}
+
+QSlider::sub-page:horizontal {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #42A5F5, stop:1 #90CAF9);
+    border-radius: 3px;
+}</string>
+   </property>
+   <property name="maximum">
+    <number>255</number>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Orientation::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QSlider" name="horizontalSlider_6">
+   <property name="geometry">
+    <rect>
+     <x>307</x>
+     <y>410</y>
+     <width>131</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QSlider::groove:horizontal {
+    height: 5px;
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #BBDEFB, stop:1 #E3F2FD);
+    border-radius: 5px;
+}
+
+QSlider::handle:horizontal {
+    width: 5px;
+    height: 15px;
+    margin: -5px 0;
+    background: qradialgradient(cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, 
+                               stop:0 #64B5F6, stop:1 #1976D2);
+    border: 1px solid #ffffff;
+    border-radius: 3px;
+}
+
+QSlider::sub-page:horizontal {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #42A5F5, stop:1 #90CAF9);
+    border-radius: 3px;
+}</string>
+   </property>
+   <property name="maximum">
+    <number>255</number>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Orientation::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_11">
+   <property name="geometry">
+    <rect>
+     <x>827</x>
+     <y>410</y>
+     <width>41</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>预览</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_color">
+   <property name="geometry">
+    <rect>
+     <x>867</x>
+     <y>400</y>
+     <width>45</width>
+     <height>45</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+border: 1.3px solid black;  
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_10">
+   <property name="geometry">
+    <rect>
+     <x>829</x>
+     <y>464</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">  /* 默认状态：蓝框白底蓝字 */
+    QPushButton {
+        background-color: white;
+        color: #2196F3;
+        border: 2px solid #2196F3;
+        border-radius: 20px;
+        padding: 2px 2px;
+
+		font-size:13px;
+    }
+
+    /* 悬停状态：蓝底白字 */
+    QPushButton:hover {
+        background-color: #2196F3;
+        color: white;
+    }
+
+    /* 按下状态：深蓝底白字 */
+    QPushButton:pressed {
+        background-color: #1976D2;
+        color: white;
+    }</string>
+   </property>
+   <property name="text">
+    <string>确认修改</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_11">
+   <property name="geometry">
+    <rect>
+     <x>653</x>
+     <y>116</y>
+     <width>51</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">  /* 默认状态：蓝框白底蓝字 */
+    QPushButton {
+        background-color: white;
+        color: #2196F3;
+        border: 2px solid #2196F3;
+        border-radius: 20px;
+        padding: 2px 2px;
+        font-weight: bold;
+		font-size:10px;
+    }
+
+    /* 悬停状态：蓝底白字 */
+    QPushButton:hover {
+        background-color: #2196F3;
+        color: white;
+    }
+
+    /* 按下状态：深蓝底白字 */
+    QPushButton:pressed {
+        background-color: #1976D2;
+        color: white;
+    }</string>
+   </property>
+   <property name="text">
+    <string>显示密码</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_12">
+   <property name="geometry">
+    <rect>
+     <x>653</x>
+     <y>278</y>
+     <width>51</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">  /* 默认状态：蓝框白底蓝字 */
+    QPushButton {
+        background-color: white;
+        color: #2196F3;
+        border: 2px solid #2196F3;
+        border-radius: 20px;
+        padding: 2px 2px;
+        font-weight: bold;
+		font-size:10px;
+    }
+
+    /* 悬停状态：蓝底白字 */
+    QPushButton:hover {
+        background-color: #2196F3;
+        color: white;
+    }
+
+    /* 按下状态：深蓝底白字 */
+    QPushButton:pressed {
+        background-color: #1976D2;
+        color: white;
+    }</string>
+   </property>
+   <property name="text">
+    <string>显示密码</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

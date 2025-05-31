@@ -1,4 +1,4 @@
-#include <windows.h>
+﻿#include <windows.h>
 #include "widget.h"
 #include "fun.h"
 #include <QApplication>
@@ -11,6 +11,7 @@
 #include<string>
 #include "worker.h"
 #include "email.h"
+#include "login_and_signup.h"
 
 //HANDLE Mutex= CreateMutex(NULL, 0, NULL);
 
@@ -20,12 +21,10 @@ int main(int argc, char *argv[])
 
     QApplication a(argc,argv);
     //WaitForSingleObject(Mutex,INFINITE);
-
-    LogInTable();
-
     Widget w;
+    login_and_signup l;
+    l.show();
     //ReleaseMutex(Mutex);
-
 
     Worker worker;
     QThread workerThread;
@@ -33,7 +32,7 @@ int main(int argc, char *argv[])
 
    
     QObject::connect(&workerThread, &QThread::started, &worker, &Worker::doWork);
-    QObject::connect(&worker, &Worker::requestRing, &w,&Widget::doALARM_test);
+    QObject::connect(&worker, &Worker::requestRing, &w,&Widget::doALARM);
 
     workerThread.start();
     a.exec();

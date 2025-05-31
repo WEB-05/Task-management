@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Login_window</class>
+ <widget class="QWidget" name="Login_window">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>521</width>
+    <height>481</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>PKU TimeManagement Master/login</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>521</width>
+     <height>491</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#frame{
+border-image:url(:/images/login2.png);
+
+}</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
+   </property>
+   <widget class="QLineEdit" name="textInput1">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>143</y>
+      <width>221</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+    QLineEdit {
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        padding: 5px 10px;
+        background: #f9f9f9;
+        font-size: 14px;
+     	color:black
+    }
+    QLineEdit:focus {
+        border-color: #4CAF50;
+        background: white;
+    }
+    QLineEdit:disabled {
+        background: #eee;
+        color: #777;
+    }</string>
+    </property>
+    <property name="placeholderText">
+     <string>请输入用户名</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="textInput2">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>200</y>
+      <width>221</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+    QLineEdit {
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        padding: 5px 10px;
+        background: #f9f9f9;
+        font-size: 14px;
+color:black;
+QLineEdit::placeholder {
+        color: #999999;
+        font-style: italic;
+
+    }
+
+    }
+    QLineEdit:focus {
+        border-color: #4CAF50;
+        background: white;
+    }
+    QLineEdit:disabled {
+        background: #eee;
+        color: #777;
+    }</string>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::EchoMode::Password</enum>
+    </property>
+    <property name="placeholderText">
+     <string>请输入密码</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button1">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>280</y>
+      <width>111</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">  /* 默认状态：蓝框白底蓝字 */
+    QPushButton {
+        background-color: white;
+        color: #2196F3;
+        border: 2px solid #2196F3;
+        border-radius: 20px;
+        padding: 2px 2px;
+        font-weight: bold;
+		font-size:23px;
+    }
+
+    /* 悬停状态：蓝底白字 */
+    QPushButton:hover {
+        background-color: #2196F3;
+        color: white;
+    }
+
+    /* 按下状态：深蓝底白字 */
+    QPushButton:pressed {
+        background-color: #1976D2;
+        color: white;
+    }</string>
+    </property>
+    <property name="text">
+     <string>登录</string>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>26</width>
+      <height>16</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button2">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>280</y>
+      <width>111</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">  /* 默认状态：蓝框白底蓝字 */
+    QPushButton {
+        
+background-color: #2196F3;
+        color: white;
+        border: 2px solid #2196F3;
+        border-radius: 20px;
+        padding: 8px 16px;
+        font-weight: bold;
+		font-size:23px;
+    }
+
+    /* 悬停状态：蓝底白字 */
+    QPushButton:hover {
+        background-color:rgb(21, 96, 153);
+    }
+
+    /* 按下状态：深蓝底白字 */
+    QPushButton:pressed {
+        background-color: #2196f3;
+        color: white;
+    }</string>
+    </property>
+    <property name="text">
+     <string>注册</string>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>26</width>
+      <height>16</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>208</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">  /* 默认状态：蓝框白底蓝字 */
+    QPushButton {
+        background-color: white;
+        color: #2196F3;
+        border: 2px solid #2196F3;
+        border-radius: 20px;
+        padding: 2px 2px;
+        font-weight: bold;
+		font-size:10px;
+    }
+
+    /* 悬停状态：蓝底白字 */
+    QPushButton:hover {
+        background-color: #2196F3;
+        color: white;
+    }
+
+    /* 按下状态：深蓝底白字 */
+    QPushButton:pressed {
+        background-color: #1976D2;
+        color: white;
+    }</string>
+    </property>
+    <property name="text">
+     <string>显示密码</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>40</y>
+      <width>201</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: white;
+        
+        font-weight: bold;
+		font-size:23px;</string>
+    </property>
+    <property name="text">
+     <string>PKU时间管理大师</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

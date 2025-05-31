@@ -1,8 +1,9 @@
 <RCC>
     <qresource prefix="/">
-        <file>bg.jpg</file>
-        <file>bg2.jpg</file>
+        <file>images/login2.png</file>
+        <file>images/signup.png</file>
+        <file>sound/alarm.wav</file>
+        <file>images/button.png</file>
+        <file>images/to_do_list_fzl_icon.ico</file>
     </qresource>
-    <qresource prefix="/1"/>
-    <qresource prefix="/222"/>
 </RCC>

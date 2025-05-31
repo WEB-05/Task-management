@@ -1,4 +1,4 @@
-#ifndef FUN_H
+﻿#ifndef FUN_H
 #define FUN_H
 #include<string>
 #include <ctime>
@@ -6,6 +6,7 @@
 #include<queue>
 #include<set>
 #include<map>
+#include "detailed.h"
 
 
 //task type
@@ -14,6 +15,7 @@
 #define LIFE 4
 #define VOLUNTEER 8
 #define OTHER 16
+#define FAMILY 32
 
 //task mode
 #define COMPLETE 1
@@ -41,7 +43,6 @@ using namespace std;
 extern bool alarm_work;
 
 extern int overdue;
-
 
 //classes
 typedef struct c
@@ -88,8 +89,8 @@ class alarm
     struct tm alarmtime;
     //member:tm_year tm_month tm_mday tm_hour tm_min
     int alarm_way;
-    vector<int> member;//members to alarm
     friend class task;
+    friend class Detailed;
 
 public:
     bool valid;
@@ -101,7 +102,7 @@ public:
     static map<int,int> id_to_location;
     //get an alarm with alarms[alarm::id_to_location[alarm_id]]
     alarm();
-    alarm(int aid,int tid,struct tm tim,int way,int* member,int member_num);
+    alarm(int aid,int tid,struct tm tim,int way);
     int get_alarm_id() const;
     struct tm get_alarmtime() const;
     int get_alarm_way() const;
@@ -113,11 +114,13 @@ public:
     friend ofstream& operator<<(ofstream& o,const alarm& a);
     friend ifstream& operator>>(ifstream& in,alarm& a);
 };
+
 typedef struct m
 {
     string name;
     string email;
 }memberr;
+
 class task
 {
     string title;
@@ -128,9 +131,11 @@ class task
     int urgent;
     int task_id;
     int mode;
-    bool show;  
+    int alarm_way;
     friend class alarm;
+    friend class Detailed;
 public:
+    bool show;
     bool valid;
     vector<int> alarm_id;
     vector<memberr> members;
@@ -142,7 +147,7 @@ public:
     static map<int,int> id_to_location;
     //get a task with tasks[task::id_to_location[task_id]]
     task();
-    task(string ti,string tex,int typ,struct tm endt,int tid,int urg,int mode,bool show);
+    task(string ti,string tex,int typ,struct tm endt,int tid,int urg,int alrw,int mode,bool show);
     string get_title() const;
     bool change_title(string title,char* error);
     string get_text() const;
@@ -154,13 +159,16 @@ public:
     struct tm get_endtime() const;
     bool change_endtime(struct tm time,char* error);
     int get_taskid() const;
+    int get_type() const;
+    bool change_type(int type,char* error);
+    int get_alarmway() const;
     //return: -1:error else:alarm_id
-    int make_alarm(struct tm alarmtime,int task_id,int alarm_way,int* member,int member_num,char* error);
-    bool addmember(string name,string email,char* error);
+    int make_alarm(struct tm alarmtime,int task_id,int alarm_way,char* error);
+    int addmember(string name,string email,char* error);
     bool deletemember(int index,char* error);
-    friend int make_task(string title,string text,int type,int mode,struct tm endtime,int urg,char* error,bool show);
+    friend int make_task(string title,string text,int type,int mode,struct tm endtime,int urg,int alarm_way,char* error,bool show);
     friend bool filter(int type,int mode,char *error);
-    friend bool update(char* error);
+    friend bool update_task(char* error);
     friend ofstream& operator<<(ofstream& o,const task& t);
     friend ifstream& operator>>(ifstream& in,task& t);
 };
@@ -184,10 +192,11 @@ extern alarm alarms[MAX_ALARM];
 // input:~ output:success:1;else:0 with error information at char* error
 int  login(string username,string password,char *error);
 // input:~ output:success:1;else:0 with error information at char* error
-/*string email_account,string email_password,*/
-bool signup(string username,string password,char *error,colors color);
+bool signup(string username,string password,char *error);
 
-int make_task(string title,string text,int type,int mode,struct tm endtime,int urg,char* error,bool show);
+bool filter(int type,int mode,char *error);
+
+int make_task(string title,string text,int type,int mode,struct tm endtime,int urg,int alarm_way,char* error,bool show);
 
 bool delete_task(int task_id,char *error);
 
@@ -195,45 +204,12 @@ bool delete_alarm(int alarm_id,char* error,int way);
 
 int comparetim(const struct tm& aa,const struct tm& bb,int way);
 
-bool sort_task(int way);
+void sort_task(int way);
+
+bool update_task(char* error);
 
 //退出前调用，存盘
 bool save(char *error); 
 
 bool load(string filename,char* error);
-
-
-
-
-void LogInTable();
-void RegisterTable();
-void MainTable();
-
-
-
 #endif // FUN_H
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

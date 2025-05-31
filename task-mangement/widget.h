@@ -1,4 +1,4 @@
-#ifndef WIDGET_H
+﻿#ifndef WIDGET_H
 #define WIDGET_H
 
 #include <QWidget>
@@ -11,9 +11,7 @@
 #include <string.h>
 
 #include "fun.h"
-
 QT_BEGIN_NAMESPACE
-using namespace std;
 namespace Ui {
 class Widget;
 }
@@ -28,13 +26,6 @@ public:
     ~Widget();
 public slots:
     void doALARM();
-    void doALARM_test();
-
-    void onButtonClicked_login(const string &username,const string &password);
-    void onButtonClicked_register();
-
-    void onButtonClicked_confirm(const string &username,const string &password,const colors &color);
-    void onButtonClicked_back();
 
 private:
     Ui::Widget *ui;
