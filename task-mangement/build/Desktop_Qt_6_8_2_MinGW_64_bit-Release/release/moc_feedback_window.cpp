@@ -43,11 +43,13 @@ static constexpr auto qt_meta_stringdata_ZN15Feedback_WindowE = QtMocHelpers::st
     "goto_setnew",
     "goto_settings",
     "go_exit",
+    "go_calendar",
     "on_pushButton_clicked",
     "on_pushButton_2_clicked",
     "on_pushButton_4_clicked",
     "on_pushButton_5_clicked",
-    "on_pushButton_3_clicked"
+    "on_pushButton_3_clicked",
+    "on_pushButton_6_clicked"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -59,33 +61,37 @@ Q_CONSTINIT static const uint qt_meta_data_ZN15Feedback_WindowE[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       9,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       4,       // signalCount
+       5,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   68,    2, 0x06,    1 /* Public */,
-       3,    0,   69,    2, 0x06,    2 /* Public */,
-       4,    0,   70,    2, 0x06,    3 /* Public */,
-       5,    0,   71,    2, 0x06,    4 /* Public */,
+       1,    0,   80,    2, 0x06,    1 /* Public */,
+       3,    0,   81,    2, 0x06,    2 /* Public */,
+       4,    0,   82,    2, 0x06,    3 /* Public */,
+       5,    0,   83,    2, 0x06,    4 /* Public */,
+       6,    0,   84,    2, 0x06,    5 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       6,    0,   72,    2, 0x08,    5 /* Private */,
-       7,    0,   73,    2, 0x08,    6 /* Private */,
-       8,    0,   74,    2, 0x08,    7 /* Private */,
-       9,    0,   75,    2, 0x08,    8 /* Private */,
-      10,    0,   76,    2, 0x08,    9 /* Private */,
+       7,    0,   85,    2, 0x08,    6 /* Private */,
+       8,    0,   86,    2, 0x08,    7 /* Private */,
+       9,    0,   87,    2, 0x08,    8 /* Private */,
+      10,    0,   88,    2, 0x08,    9 /* Private */,
+      11,    0,   89,    2, 0x08,   10 /* Private */,
+      12,    0,   90,    2, 0x08,   11 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void,
 
  // slots: parameters
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -112,6 +118,8 @@ Q_CONSTINIT const QMetaObject Feedback_Window::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'go_exit'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'go_calendar'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_pushButton_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_pushButton_2_clicked'
@@ -121,6 +129,8 @@ Q_CONSTINIT const QMetaObject Feedback_Window::staticMetaObject = { {
         // method 'on_pushButton_5_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_pushButton_3_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_pushButton_6_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -135,11 +145,13 @@ void Feedback_Window::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         case 1: _t->goto_setnew(); break;
         case 2: _t->goto_settings(); break;
         case 3: _t->go_exit(); break;
-        case 4: _t->on_pushButton_clicked(); break;
-        case 5: _t->on_pushButton_2_clicked(); break;
-        case 6: _t->on_pushButton_4_clicked(); break;
-        case 7: _t->on_pushButton_5_clicked(); break;
-        case 8: _t->on_pushButton_3_clicked(); break;
+        case 4: _t->go_calendar(); break;
+        case 5: _t->on_pushButton_clicked(); break;
+        case 6: _t->on_pushButton_2_clicked(); break;
+        case 7: _t->on_pushButton_4_clicked(); break;
+        case 8: _t->on_pushButton_5_clicked(); break;
+        case 9: _t->on_pushButton_3_clicked(); break;
+        case 10: _t->on_pushButton_6_clicked(); break;
         default: ;
         }
     }
@@ -173,6 +185,13 @@ void Feedback_Window::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
                 return;
             }
         }
+        {
+            using _q_method_type = void (Feedback_Window::*)();
+            if (_q_method_type _q_method = &Feedback_Window::go_calendar; *reinterpret_cast<_q_method_type *>(_a[1]) == _q_method) {
+                *result = 4;
+                return;
+            }
+        }
     }
 }
 
@@ -195,14 +214,14 @@ int Feedback_Window::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 11;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 9)
+        if (_id < 11)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 9;
+        _id -= 11;
     }
     return _id;
 }
@@ -229,5 +248,11 @@ void Feedback_Window::goto_settings()
 void Feedback_Window::go_exit()
 {
     QMetaObject::activate(this, &staticMetaObject, 3, nullptr);
+}
+
+// SIGNAL 4
+void Feedback_Window::go_calendar()
+{
+    QMetaObject::activate(this, &staticMetaObject, 4, nullptr);
 }
 QT_WARNING_POP

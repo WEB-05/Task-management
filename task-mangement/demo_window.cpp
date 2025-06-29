@@ -705,3 +705,34 @@ void Demo_Window::on_pushButton_7_clicked()
     detail_page_right->show();
 }
 
+
+void Demo_Window::on_pushButton_8_clicked()
+{
+    emit go_calendar();
+}
+
+void Demo_Window::go_date(QDate date)
+{
+    ui->radioButton_2->setChecked(1);
+    ui->radioButton->setChecked(0);
+    init(1);
+    QDate t;
+    struct tm endtime;
+    while(1)
+    {
+        endtime=tasks[left_task].get_endtime();
+        t=QDate(endtime.tm_year+1900,endtime.tm_mon+1,endtime.tm_mday);
+        if (t==date)
+        {
+            break;
+        }
+        endtime=tasks[right_task].get_endtime();
+        t=QDate(endtime.tm_year+1900,endtime.tm_mon+1,endtime.tm_mday);
+        if (t==date)
+        {
+            break;
+        }
+        on_next_page_button_clicked();
+    }
+    return;
+}

@@ -157,3 +157,9 @@ void Feedback_Window::init()
         ui->label_03->setStyleSheet("color:#707070");
     }
 }
+
+void Feedback_Window::on_pushButton_6_clicked()
+{
+    emit go_calendar();
+}
+

@@ -8,6 +8,7 @@
 #include "demo_window.h"
 #include "feedback_window.h"
 #include "setnew_window.h"
+#include "calendar.h"
 
 extern QWidget* overlay;
 
@@ -29,6 +30,7 @@ private:
     SetNew_Window *setnewPage;
     Settings_Window *settingsPage;
     Feedback_Window *feedbackPage;
+    Calendar *calendarPage;
 
 private slots:
     // 页面切换
@@ -37,6 +39,8 @@ private slots:
     void goto_settings();
     void goto_feedback();
     void go_exit();
+    void goto_calendar();
+    void goto_date(QDate date);
 
 };
 

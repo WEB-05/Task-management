@@ -68,6 +68,7 @@ public:
     QCheckBox *checkBox;
     QCheckBox *checkBox_2;
     QPushButton *alarm_type_confirmed;
+    QPushButton *pushButton_6;
 
     void setupUi(QWidget *SetNew_Window)
     {
@@ -77,7 +78,7 @@ public:
         SetNew_Window->resize(979, 591);
         pushButton = new QPushButton(SetNew_Window);
         pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(0, 0, 181, 131));
+        pushButton->setGeometry(QRect(0, 0, 181, 100));
         pushButton->setStyleSheet(QString::fromUtf8("QPushButton \n"
 "{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;\n"
 "\n"
@@ -92,7 +93,7 @@ public:
 "    }"));
         pushButton_2 = new QPushButton(SetNew_Window);
         pushButton_2->setObjectName("pushButton_2");
-        pushButton_2->setGeometry(QRect(0, 130, 181, 131));
+        pushButton_2->setGeometry(QRect(0, 200, 181, 100));
         pushButton_2->setStyleSheet(QString::fromUtf8("QPushButton \n"
 "{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;\n"
 "\n"
@@ -108,7 +109,7 @@ public:
 ""));
         pushButton_3 = new QPushButton(SetNew_Window);
         pushButton_3->setObjectName("pushButton_3");
-        pushButton_3->setGeometry(QRect(0, 260, 181, 131));
+        pushButton_3->setGeometry(QRect(0, 300, 181, 100));
         pushButton_3->setStyleSheet(QString::fromUtf8("QPushButton \n"
 "{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;\n"
 "\n"
@@ -123,7 +124,7 @@ public:
 "    }"));
         pushButton_4 = new QPushButton(SetNew_Window);
         pushButton_4->setObjectName("pushButton_4");
-        pushButton_4->setGeometry(QRect(0, 390, 181, 131));
+        pushButton_4->setGeometry(QRect(0, 400, 181, 100));
         pushButton_4->setStyleSheet(QString::fromUtf8("QPushButton \n"
 "{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;\n"
 "\n"
@@ -138,7 +139,7 @@ public:
 "    }"));
         pushButton_5 = new QPushButton(SetNew_Window);
         pushButton_5->setObjectName("pushButton_5");
-        pushButton_5->setGeometry(QRect(0, 520, 181, 71));
+        pushButton_5->setGeometry(QRect(0, 500, 181, 91));
         pushButton_5->setStyleSheet(QString::fromUtf8("QPushButton \n"
 "{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;\n"
 "\n"
@@ -299,8 +300,8 @@ public:
         timeEdit_2->setProperty("showGroupSeparator", QVariant(true));
         timeEdit_2->setDateTime(QDateTime(QDate(2025, 1, 1), QTime(0, 0, 0)));
         timeEdit_2->setDate(QDate(2025, 1, 1));
-        timeEdit_2->setMaximumDateTime(QDateTime(QDate(2040, 1, 1), QTime(7, 59, 59)));
-        timeEdit_2->setMinimumDateTime(QDateTime(QDate(2020, 1, 1), QTime(8, 0, 0)));
+        timeEdit_2->setMaximumDateTime(QDateTime(QDate(2040, 1, 1), QTime(23, 59, 59)));
+        timeEdit_2->setMinimumDateTime(QDateTime(QDate(2020, 1, 1), QTime(0, 0, 0)));
         timeEdit_2->setMaximumDate(QDate(2040, 1, 1));
         timeEdit_2->setMinimumDate(QDate(2020, 1, 1));
         timeEdit_2->setCurrentSection(QDateTimeEdit::Section::MinuteSection);
@@ -337,7 +338,7 @@ public:
 "    image:url(:/myicon/image/down.png);\n"
 "}"));
         dateEdit_2->setAlignment(Qt::AlignmentFlag::AlignCenter);
-        dateEdit_2->setDateTime(QDateTime(QDate(2025, 1, 1), QTime(8, 0, 0)));
+        dateEdit_2->setDateTime(QDateTime(QDate(2025, 1, 1), QTime(0, 0, 0)));
         dateEdit_2->setDate(QDate(2025, 1, 1));
         add_alarm_time = new QPushButton(SetNew_Window);
         add_alarm_time->setObjectName("add_alarm_time");
@@ -762,6 +763,21 @@ public:
 "        background-color: #1976D2;\n"
 "        color: white;\n"
 "    }"));
+        pushButton_6 = new QPushButton(SetNew_Window);
+        pushButton_6->setObjectName("pushButton_6");
+        pushButton_6->setGeometry(QRect(0, 100, 181, 100));
+        pushButton_6->setStyleSheet(QString::fromUtf8("QPushButton \n"
+"{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;\n"
+"\n"
+"color:rgb(255, 243, 181);\n"
+"font: 25pt \"FZYaoTi\";\n"
+"}\n"
+"    QPushButton:hover {\n"
+"        color: black;\n"
+"    }\n"
+"    QPushButton:pressed {\n"
+"        color: rgb(255, 19, 133);\n"
+"    }"));
 
         retranslateUi(SetNew_Window);
 
@@ -811,6 +827,7 @@ public:
         checkBox->setText(QCoreApplication::translate("SetNew_Window", "\351\202\256\347\256\261", nullptr));
         checkBox_2->setText(QCoreApplication::translate("SetNew_Window", "\351\227\271\351\222\237", nullptr));
         alarm_type_confirmed->setText(QCoreApplication::translate("SetNew_Window", "\347\241\256\350\256\244", nullptr));
+        pushButton_6->setText(QCoreApplication::translate("SetNew_Window", "\346\227\245\345\216\206\346\250\241\345\274\217", nullptr));
     } // retranslateUi
 
 };

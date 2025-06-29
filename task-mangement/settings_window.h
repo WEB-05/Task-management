@@ -50,6 +50,8 @@ private slots:
 
     void on_pushButton_12_released();
 
+    void on_pushButton_13_clicked();
+
 private:
     Ui::Settings_Window *ui;
 
@@ -60,6 +62,7 @@ signals:
     void goto_setnew();
     void goto_feedback();
     void go_exit();
+    void go_calendar();
 };
 
 #endif // SETTINGS_WINDOW_H

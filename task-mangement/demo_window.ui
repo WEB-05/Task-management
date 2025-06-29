@@ -22,7 +22,7 @@
      <x>0</x>
      <y>0</y>
      <width>181</width>
-     <height>131</height>
+     <height>100</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -48,9 +48,9 @@ font: 25pt &quot;FZYaoTi&quot;;
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>130</y>
+     <y>200</y>
      <width>181</width>
-     <height>131</height>
+     <height>100</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -75,9 +75,9 @@ font: 25pt &quot;FZYaoTi&quot;;
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>260</y>
+     <y>300</y>
      <width>181</width>
-     <height>131</height>
+     <height>100</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -102,9 +102,9 @@ font: 25pt &quot;FZYaoTi&quot;;
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>390</y>
+     <y>400</y>
      <width>181</width>
-     <height>131</height>
+     <height>100</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -129,9 +129,9 @@ font: 25pt &quot;FZYaoTi&quot;;
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>520</y>
+     <y>500</y>
      <width>181</width>
-     <height>71</height>
+     <height>91</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -163,7 +163,7 @@ font: 25pt &quot;FZYaoTi&quot;;
    </property>
    <property name="styleSheet">
     <string notr="true">QGroupBox {
-        border: none;
+        border: 2px solid rgb(0,0,0);
         border-radius: 8px;
         margin-top: 20px;
         padding-top: 25px;
@@ -879,7 +879,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
    </property>
    <property name="styleSheet">
     <string notr="true">QGroupBox {
-        border: none;
+        border: 2px  solid rgb(0, 0, 0);
         border-radius: 8px;
         margin-top: 20px;
         padding-top: 25px;
@@ -1015,9 +1015,9 @@ QCheckBox {
     <property name="geometry">
      <rect>
       <x>180</x>
-      <y>44</y>
+      <y>46</y>
       <width>51</width>
-      <height>24</height>
+      <height>22</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -1052,9 +1052,9 @@ QCheckBox {
     <property name="geometry">
      <rect>
       <x>180</x>
-      <y>20</y>
+      <y>23</y>
       <width>51</width>
-      <height>24</height>
+      <height>22</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -1137,9 +1137,9 @@ QCheckBox {
     <property name="geometry">
      <rect>
       <x>363</x>
-      <y>19</y>
+      <y>23</y>
       <width>51</width>
-      <height>24</height>
+      <height>22</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -1174,9 +1174,9 @@ QCheckBox {
     <property name="geometry">
      <rect>
       <x>363</x>
-      <y>43</y>
+      <y>46</y>
       <width>51</width>
-      <height>24</height>
+      <height>22</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -1345,6 +1345,33 @@ QPushButton:disabled {
    </property>
    <property name="text">
     <string>查看提醒/修改</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_8">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>100</y>
+     <width>181</width>
+     <height>100</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton 
+{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;
+
+color:rgb(255, 243, 181);
+font: 25pt &quot;FZYaoTi&quot;;
+}
+    QPushButton:hover {
+        color: black;
+    }
+    QPushButton:pressed {
+        color: rgb(255, 19, 133);
+    }</string>
+   </property>
+   <property name="text">
+    <string>日历模式</string>
    </property>
   </widget>
  </widget>

@@ -42,6 +42,7 @@ public:
     QLabel *label_02;
     QLabel *label_03;
     QLabel *god_2;
+    QPushButton *pushButton_6;
 
     void setupUi(QWidget *Feedback_Window)
     {
@@ -50,7 +51,7 @@ public:
         Feedback_Window->resize(979, 591);
         pushButton = new QPushButton(Feedback_Window);
         pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(0, 0, 181, 131));
+        pushButton->setGeometry(QRect(0, 0, 181, 100));
         pushButton->setStyleSheet(QString::fromUtf8("QPushButton \n"
 "{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;\n"
 "\n"
@@ -65,7 +66,7 @@ public:
 "    }"));
         pushButton_2 = new QPushButton(Feedback_Window);
         pushButton_2->setObjectName("pushButton_2");
-        pushButton_2->setGeometry(QRect(0, 130, 181, 131));
+        pushButton_2->setGeometry(QRect(0, 200, 181, 100));
         pushButton_2->setStyleSheet(QString::fromUtf8("QPushButton \n"
 "{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;\n"
 "\n"
@@ -80,7 +81,7 @@ public:
 "    }"));
         pushButton_3 = new QPushButton(Feedback_Window);
         pushButton_3->setObjectName("pushButton_3");
-        pushButton_3->setGeometry(QRect(0, 260, 181, 131));
+        pushButton_3->setGeometry(QRect(0, 300, 181, 100));
         pushButton_3->setStyleSheet(QString::fromUtf8("QPushButton \n"
 "{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;\n"
 "\n"
@@ -96,7 +97,7 @@ public:
 ""));
         pushButton_4 = new QPushButton(Feedback_Window);
         pushButton_4->setObjectName("pushButton_4");
-        pushButton_4->setGeometry(QRect(0, 390, 181, 131));
+        pushButton_4->setGeometry(QRect(0, 400, 181, 100));
         pushButton_4->setStyleSheet(QString::fromUtf8("QPushButton \n"
 "{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;\n"
 "\n"
@@ -111,7 +112,7 @@ public:
 "    }"));
         pushButton_5 = new QPushButton(Feedback_Window);
         pushButton_5->setObjectName("pushButton_5");
-        pushButton_5->setGeometry(QRect(0, 520, 181, 71));
+        pushButton_5->setGeometry(QRect(0, 500, 181, 91));
         pushButton_5->setStyleSheet(QString::fromUtf8("QPushButton \n"
 "{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;\n"
 "\n"
@@ -155,36 +156,36 @@ public:
         QFont font;
         font.setBold(false);
         task_sum->setFont(font);
-        task_sum->setStyleSheet(QString::fromUtf8("border: none;\n"
+        task_sum->setStyleSheet(QString::fromUtf8("border: 2px solid rgb(17, 203, 255);\n"
 "color:balck;\n"
 "background-color: white;"));
-        task_sum->setSegmentStyle(QLCDNumber::Flat);
+        task_sum->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
         task_curr = new QLCDNumber(Feedback_Window);
         task_curr->setObjectName("task_curr");
         task_curr->setGeometry(QRect(430, 100, 131, 51));
         task_curr->setFont(font);
-        task_curr->setStyleSheet(QString::fromUtf8("border: none;\n"
+        task_curr->setStyleSheet(QString::fromUtf8("border: 2px solid rgb(17, 203, 255);\n"
 "color:balck;\n"
 "background-color: white;"));
         task_curr->setDigitCount(5);
-        task_curr->setSegmentStyle(QLCDNumber::Flat);
+        task_curr->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
         task_done = new QLCDNumber(Feedback_Window);
         task_done->setObjectName("task_done");
         task_done->setGeometry(QRect(430, 170, 131, 51));
         task_done->setFont(font);
-        task_done->setStyleSheet(QString::fromUtf8("border: none;\n"
+        task_done->setStyleSheet(QString::fromUtf8("border: 2px solid rgb(17, 203, 255);\n"
 "color:green;\n"
 "background-color: white;"));
-        task_done->setSegmentStyle(QLCDNumber::Flat);
+        task_done->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
         task_overdue = new QLCDNumber(Feedback_Window);
         task_overdue->setObjectName("task_overdue");
         task_overdue->setGeometry(QRect(430, 240, 131, 51));
         task_overdue->setFont(font);
-        task_overdue->setStyleSheet(QString::fromUtf8("border: none;\n"
+        task_overdue->setStyleSheet(QString::fromUtf8("border:2px solid rgb(235, 11, 255);\n"
 "color:red;\n"
 "background-color: white;"));
         task_overdue->setSmallDecimalPoint(false);
-        task_overdue->setSegmentStyle(QLCDNumber::Flat);
+        task_overdue->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
         task_overdue->setProperty("value", QVariant(0.000000000000000));
         task_overdue->setProperty("intValue", QVariant(0));
         label_01 = new QLabel(Feedback_Window);
@@ -205,6 +206,21 @@ public:
         god_2 = new QLabel(Feedback_Window);
         god_2->setObjectName("god_2");
         god_2->setGeometry(QRect(790, 320, 171, 171));
+        pushButton_6 = new QPushButton(Feedback_Window);
+        pushButton_6->setObjectName("pushButton_6");
+        pushButton_6->setGeometry(QRect(0, 100, 181, 100));
+        pushButton_6->setStyleSheet(QString::fromUtf8("QPushButton \n"
+"{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;\n"
+"\n"
+"color:rgb(255, 243, 181);\n"
+"font: 25pt \"FZYaoTi\";\n"
+"}\n"
+"    QPushButton:hover {\n"
+"        color: black;\n"
+"    }\n"
+"    QPushButton:pressed {\n"
+"        color: rgb(255, 19, 133);\n"
+"    }"));
 
         retranslateUi(Feedback_Window);
 
@@ -242,6 +258,7 @@ public:
         label_02->setText(QCoreApplication::translate("Feedback_Window", "<html><head/><body><p><span >\346\234\252\350\276\276\346\210\220</span></p></body></html>", nullptr));
         label_03->setText(QCoreApplication::translate("Feedback_Window", "<html><head/><body><p><span >\346\234\252\350\276\276\346\210\220</span></p></body></html>", nullptr));
         god_2->setText(QCoreApplication::translate("Feedback_Window", "<html><head/><body><p><span style=\" font-weight:700; color:#000000;\">\351\232\220\350\227\217\346\210\220\345\260\261\357\274\232</span></p><p><span style=\" font-size:14pt; font-weight:700; color:#707070;\">\357\274\237\357\274\237\357\274\237</span></p><p><span style=\" color:#707070;\">\350\276\276\346\210\220\346\235\241\344\273\266\357\274\232</span></p><p><span style=\" color:#707070;\">\357\274\237\357\274\237\357\274\237</span></p><p><span style=\" color:#707070;\">\357\274\237\357\274\237\357\274\237</span></p></body></html>", nullptr));
+        pushButton_6->setText(QCoreApplication::translate("Feedback_Window", "\346\227\245\345\216\206\346\250\241\345\274\217", nullptr));
     } // retranslateUi
 
 };

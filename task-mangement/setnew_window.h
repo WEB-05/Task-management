@@ -23,6 +23,7 @@ signals:
     void goto_settings();
     void goto_feedback();
     void go_exit();
+    void go_calendar();
 
 private slots:
     void on_pushButton_clicked();
@@ -39,6 +40,8 @@ private slots:
     void on_submit_page_button_clicked();
     void on_alarm_type_confirmed_clicked();
     void on_pushButton_2_clicked();
+
+    void on_pushButton_6_clicked();
 
 public:
     void reset_page();

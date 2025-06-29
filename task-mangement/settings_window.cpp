@@ -209,3 +209,10 @@ void Settings_Window::on_pushButton_12_released()
     ui->lineEdit_13->setEchoMode(QLineEdit::Password);
 }
 
+
+void Settings_Window::on_pushButton_13_clicked()
+{
+    if(!test())return;
+    emit go_calendar();
+}
+

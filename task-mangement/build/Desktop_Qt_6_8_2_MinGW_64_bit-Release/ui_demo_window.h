@@ -80,6 +80,7 @@ public:
     QCheckBox *volunteer;
     QPushButton *pushButton_6;
     QPushButton *pushButton_7;
+    QPushButton *pushButton_8;
 
     void setupUi(QWidget *Demo_Window)
     {
@@ -89,7 +90,7 @@ public:
         Demo_Window->resize(979, 591);
         pushButton = new QPushButton(Demo_Window);
         pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(0, 0, 181, 131));
+        pushButton->setGeometry(QRect(0, 0, 181, 100));
         pushButton->setStyleSheet(QString::fromUtf8("QPushButton \n"
 "{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;\n"
 "\n"
@@ -105,7 +106,7 @@ public:
 ""));
         pushButton_2 = new QPushButton(Demo_Window);
         pushButton_2->setObjectName("pushButton_2");
-        pushButton_2->setGeometry(QRect(0, 130, 181, 131));
+        pushButton_2->setGeometry(QRect(0, 200, 181, 100));
         pushButton_2->setStyleSheet(QString::fromUtf8("QPushButton \n"
 "{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;\n"
 "\n"
@@ -120,7 +121,7 @@ public:
 "    }"));
         pushButton_3 = new QPushButton(Demo_Window);
         pushButton_3->setObjectName("pushButton_3");
-        pushButton_3->setGeometry(QRect(0, 260, 181, 131));
+        pushButton_3->setGeometry(QRect(0, 300, 181, 100));
         pushButton_3->setStyleSheet(QString::fromUtf8("QPushButton \n"
 "{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;\n"
 "\n"
@@ -135,7 +136,7 @@ public:
 "    }"));
         pushButton_4 = new QPushButton(Demo_Window);
         pushButton_4->setObjectName("pushButton_4");
-        pushButton_4->setGeometry(QRect(0, 390, 181, 131));
+        pushButton_4->setGeometry(QRect(0, 400, 181, 100));
         pushButton_4->setStyleSheet(QString::fromUtf8("QPushButton \n"
 "{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;\n"
 "\n"
@@ -150,7 +151,7 @@ public:
 "    }"));
         pushButton_5 = new QPushButton(Demo_Window);
         pushButton_5->setObjectName("pushButton_5");
-        pushButton_5->setGeometry(QRect(0, 520, 181, 71));
+        pushButton_5->setGeometry(QRect(0, 500, 181, 91));
         pushButton_5->setStyleSheet(QString::fromUtf8("QPushButton \n"
 "{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;\n"
 "\n"
@@ -167,7 +168,7 @@ public:
         groupBox->setObjectName("groupBox");
         groupBox->setGeometry(QRect(180, 0, 211, 71));
         groupBox->setStyleSheet(QString::fromUtf8("QGroupBox {\n"
-"        border: none;\n"
+"        border: 2px solid rgb(0,0,0);\n"
 "        border-radius: 8px;\n"
 "        margin-top: 20px;\n"
 "        padding-top: 25px;\n"
@@ -489,7 +490,7 @@ public:
         groupBox_2->setObjectName("groupBox_2");
         groupBox_2->setGeometry(QRect(390, 0, 481, 71));
         groupBox_2->setStyleSheet(QString::fromUtf8("QGroupBox {\n"
-"        border: none;\n"
+"        border: 2px  solid rgb(0, 0, 0);\n"
 "        border-radius: 8px;\n"
 "        margin-top: 20px;\n"
 "        padding-top: 25px;\n"
@@ -528,8 +529,8 @@ public:
 "    }\n"
 "    \n"
 "    QCheckBox::indicator:unchecked:hover {\n"
-"        background: #B0"
-                        "BEC5;\n"
+"    "
+                        "    background: #B0BEC5;\n"
 "    }\n"
 "    \n"
 "    QCheckBox::indicator:checked:hover {\n"
@@ -558,7 +559,7 @@ public:
         life->setChecked(true);
         clear = new QPushButton(groupBox_2);
         clear->setObjectName("clear");
-        clear->setGeometry(QRect(180, 44, 51, 24));
+        clear->setGeometry(QRect(180, 46, 51, 22));
         clear->setStyleSheet(QString::fromUtf8("  /* \351\273\230\350\256\244\347\212\266\346\200\201\357\274\232\350\223\235\346\241\206\347\231\275\345\272\225\350\223\235\345\255\227 */\n"
 "    QPushButton {\n"
 "        background-color: white;\n"
@@ -583,7 +584,7 @@ public:
 "    }"));
         all = new QPushButton(groupBox_2);
         all->setObjectName("all");
-        all->setGeometry(QRect(180, 20, 51, 24));
+        all->setGeometry(QRect(180, 23, 51, 22));
         all->setStyleSheet(QString::fromUtf8("  /* \351\273\230\350\256\244\347\212\266\346\200\201\357\274\232\350\223\235\346\241\206\347\231\275\345\272\225\350\223\235\345\255\227 */\n"
 "    QPushButton {\n"
 "        background-color: white;\n"
@@ -620,7 +621,7 @@ public:
         overdue->setChecked(true);
         all_2 = new QPushButton(groupBox_2);
         all_2->setObjectName("all_2");
-        all_2->setGeometry(QRect(363, 19, 51, 24));
+        all_2->setGeometry(QRect(363, 23, 51, 22));
         all_2->setStyleSheet(QString::fromUtf8("  /* \351\273\230\350\256\244\347\212\266\346\200\201\357\274\232\350\223\235\346\241\206\347\231\275\345\272\225\350\223\235\345\255\227 */\n"
 "    QPushButton {\n"
 "        background-color: white;\n"
@@ -645,7 +646,7 @@ public:
 "    }"));
         clear_2 = new QPushButton(groupBox_2);
         clear_2->setObjectName("clear_2");
-        clear_2->setGeometry(QRect(363, 43, 51, 24));
+        clear_2->setGeometry(QRect(363, 46, 51, 22));
         clear_2->setStyleSheet(QString::fromUtf8("  /* \351\273\230\350\256\244\347\212\266\346\200\201\357\274\232\350\223\235\346\241\206\347\231\275\345\272\225\350\223\235\345\255\227 */\n"
 "    QPushButton {\n"
 "        background-color: white;\n"
@@ -761,6 +762,21 @@ public:
 "    color: #808080 ;\n"
 "    border: 2px solid #9e9e9e;\n"
 "}"));
+        pushButton_8 = new QPushButton(Demo_Window);
+        pushButton_8->setObjectName("pushButton_8");
+        pushButton_8->setGeometry(QRect(0, 100, 181, 100));
+        pushButton_8->setStyleSheet(QString::fromUtf8("QPushButton \n"
+"{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;\n"
+"\n"
+"color:rgb(255, 243, 181);\n"
+"font: 25pt \"FZYaoTi\";\n"
+"}\n"
+"    QPushButton:hover {\n"
+"        color: black;\n"
+"    }\n"
+"    QPushButton:pressed {\n"
+"        color: rgb(255, 19, 133);\n"
+"    }"));
 
         retranslateUi(Demo_Window);
 
@@ -840,6 +856,7 @@ public:
         volunteer->setText(QCoreApplication::translate("Demo_Window", "\347\244\276\345\233\242", nullptr));
         pushButton_6->setText(QCoreApplication::translate("Demo_Window", "\346\237\245\347\234\213\346\217\220\351\206\222/\344\277\256\346\224\271", nullptr));
         pushButton_7->setText(QCoreApplication::translate("Demo_Window", "\346\237\245\347\234\213\346\217\220\351\206\222/\344\277\256\346\224\271", nullptr));
+        pushButton_8->setText(QCoreApplication::translate("Demo_Window", "\346\227\245\345\216\206\346\250\241\345\274\217", nullptr));
     } // retranslateUi
 
 };

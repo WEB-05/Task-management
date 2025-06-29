@@ -19,7 +19,7 @@
      <x>0</x>
      <y>0</y>
      <width>181</width>
-     <height>131</height>
+     <height>100</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -44,9 +44,9 @@ font: 25pt &quot;FZYaoTi&quot;;
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>130</y>
+     <y>200</y>
      <width>181</width>
-     <height>131</height>
+     <height>100</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -71,9 +71,9 @@ font: 25pt &quot;FZYaoTi&quot;;
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>260</y>
+     <y>300</y>
      <width>181</width>
-     <height>131</height>
+     <height>100</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -99,9 +99,9 @@ font: 25pt &quot;FZYaoTi&quot;;
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>390</y>
+     <y>400</y>
      <width>181</width>
-     <height>131</height>
+     <height>100</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -126,9 +126,9 @@ font: 25pt &quot;FZYaoTi&quot;;
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>520</y>
+     <y>500</y>
      <width>181</width>
-     <height>71</height>
+     <height>91</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -281,12 +281,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">border: none;
+    <string notr="true">border: 2px solid rgb(17, 203, 255);
 color:balck;
 background-color: white;</string>
    </property>
    <property name="segmentStyle">
-    <enum>QLCDNumber::Flat</enum>
+    <enum>QLCDNumber::SegmentStyle::Flat</enum>
    </property>
   </widget>
   <widget class="QLCDNumber" name="task_curr">
@@ -304,7 +304,7 @@ background-color: white;</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">border: none;
+    <string notr="true">border: 2px solid rgb(17, 203, 255);
 color:balck;
 background-color: white;</string>
    </property>
@@ -312,7 +312,7 @@ background-color: white;</string>
     <number>5</number>
    </property>
    <property name="segmentStyle">
-    <enum>QLCDNumber::Flat</enum>
+    <enum>QLCDNumber::SegmentStyle::Flat</enum>
    </property>
   </widget>
   <widget class="QLCDNumber" name="task_done">
@@ -330,12 +330,12 @@ background-color: white;</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">border: none;
+    <string notr="true">border: 2px solid rgb(17, 203, 255);
 color:green;
 background-color: white;</string>
    </property>
    <property name="segmentStyle">
-    <enum>QLCDNumber::Flat</enum>
+    <enum>QLCDNumber::SegmentStyle::Flat</enum>
    </property>
   </widget>
   <widget class="QLCDNumber" name="task_overdue">
@@ -353,7 +353,7 @@ background-color: white;</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">border: none;
+    <string notr="true">border:2px solid rgb(235, 11, 255);
 color:red;
 background-color: white;</string>
    </property>
@@ -361,7 +361,7 @@ background-color: white;</string>
     <bool>false</bool>
    </property>
    <property name="segmentStyle">
-    <enum>QLCDNumber::Flat</enum>
+    <enum>QLCDNumber::SegmentStyle::Flat</enum>
    </property>
    <property name="value" stdset="0">
     <double>0.000000000000000</double>
@@ -438,6 +438,33 @@ background-color: white;</string>
    </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#000000;&quot;&gt;隐藏成就：&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:700; color:#707070;&quot;&gt;？？？&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#707070;&quot;&gt;达成条件：&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#707070;&quot;&gt;？？？&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#707070;&quot;&gt;？？？&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_6">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>100</y>
+     <width>181</width>
+     <height>100</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton 
+{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;
+
+color:rgb(255, 243, 181);
+font: 25pt &quot;FZYaoTi&quot;;
+}
+    QPushButton:hover {
+        color: black;
+    }
+    QPushButton:pressed {
+        color: rgb(255, 19, 133);
+    }</string>
+   </property>
+   <property name="text">
+    <string>日历模式</string>
    </property>
   </widget>
  </widget>

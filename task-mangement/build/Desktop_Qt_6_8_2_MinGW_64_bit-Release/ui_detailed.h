@@ -125,7 +125,7 @@ public:
         label_3->setGeometry(QRect(10, 30, 61, 31));
         lineEdit = new QLineEdit(Detailed);
         lineEdit->setObjectName("lineEdit");
-        lineEdit->setGeometry(QRect(70, 30, 141, 31));
+        lineEdit->setGeometry(QRect(80, 30, 141, 31));
         lineEdit->setStyleSheet(QString::fromUtf8("\n"
 "    QLineEdit {\n"
 "        border: 2px solid #ccc;\n"
@@ -183,14 +183,14 @@ public:
 "        font-size: 14px;\n"
 "     	color:black\n"
 "    }\n"
-"    QPlainTextEdit :focus {\n"
-"        border-color:  #2196F3;\n"
+"    QPlainTextEdit:focus {\n"
+"        border-color: #2196F3;\n"
 "        background: white;\n"
 "    }\n"
-"    QPlainTextEdit :disabled {\n"
+"    QPlainTextEdit:disabled {\n"
 "        background: #eee;\n"
 "        color: #777;\n"
-"    }"));
+"    }    "));
         dateTimeEdit = new QDateTimeEdit(Detailed);
         dateTimeEdit->setObjectName("dateTimeEdit");
         dateTimeEdit->setGeometry(QRect(80, 270, 201, 51));
@@ -292,7 +292,7 @@ public:
         label_6->setGeometry(QRect(10, 368, 54, 16));
         spinBox = new QSpinBox(Detailed);
         spinBox->setObjectName("spinBox");
-        spinBox->setGeometry(QRect(70, 358, 51, 31));
+        spinBox->setGeometry(QRect(80, 360, 51, 31));
         spinBox->setMaximum(10);
         pushButton_5 = new QPushButton(Detailed);
         pushButton_5->setObjectName("pushButton_5");
@@ -421,7 +421,7 @@ public:
         dateEdit_2->setObjectName("dateEdit_2");
         dateEdit_2->setGeometry(QRect(640, 290, 111, 41));
         dateEdit_2->setAlignment(Qt::AlignmentFlag::AlignCenter);
-        dateEdit_2->setDateTime(QDateTime(QDate(2025, 1, 1), QTime(16, 0, 0)));
+        dateEdit_2->setDateTime(QDateTime(QDate(2025, 1, 1), QTime(0, 0, 0)));
         dateEdit_2->setDate(QDate(2025, 1, 1));
         add_alarm_time = new QPushButton(Detailed);
         add_alarm_time->setObjectName("add_alarm_time");
@@ -462,8 +462,8 @@ public:
         timeEdit_2->setProperty("showGroupSeparator", QVariant(true));
         timeEdit_2->setDateTime(QDateTime(QDate(2025, 1, 1), QTime(0, 0, 0)));
         timeEdit_2->setDate(QDate(2025, 1, 1));
-        timeEdit_2->setMaximumDateTime(QDateTime(QDate(2040, 1, 1), QTime(15, 59, 59)));
-        timeEdit_2->setMinimumDateTime(QDateTime(QDate(2020, 1, 1), QTime(16, 0, 0)));
+        timeEdit_2->setMaximumDateTime(QDateTime(QDate(2040, 1, 1), QTime(23, 59, 59)));
+        timeEdit_2->setMinimumDateTime(QDateTime(QDate(2020, 1, 1), QTime(0, 0, 0)));
         timeEdit_2->setMaximumDate(QDate(2040, 1, 1));
         timeEdit_2->setMinimumDate(QDate(2020, 1, 1));
         timeEdit_2->setCurrentSection(QDateTimeEdit::Section::MinuteSection);
@@ -533,7 +533,7 @@ public:
         label->setText(QCoreApplication::translate("Detailed", "\346\217\220\351\206\222\351\202\256\347\256\261\357\274\232", nullptr));
         label_2->setText(QCoreApplication::translate("Detailed", "\346\217\220\351\206\222\346\227\266\351\227\264\357\274\232", nullptr));
         pushButton->setText(QCoreApplication::translate("Detailed", "\345\205\263\351\227\255", nullptr));
-        label_3->setText(QCoreApplication::translate("Detailed", "\344\273\273\345\212\241\345\220\215\347\247\260\357\274\232", nullptr));
+        label_3->setText(QCoreApplication::translate("Detailed", "<html><head/><body><p><span style=\" font-weight:700;\">\344\273\273\345\212\241\345\220\215\347\247\260\357\274\232</span></p></body></html>", nullptr));
         pushButton_2->setText(QCoreApplication::translate("Detailed", "\344\277\256\346\224\271", nullptr));
         label_4->setText(QCoreApplication::translate("Detailed", "\344\273\273\345\212\241\346\217\217\350\277\260\357\274\232", nullptr));
         pushButton_3->setText(QCoreApplication::translate("Detailed", "\344\277\256\346\224\271", nullptr));

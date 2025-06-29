@@ -1,5 +1,6 @@
 QT       += core gui
 QT += multimedia
+QT += widgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -10,6 +11,8 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    calendar.cpp \
+    customcalendar.cpp \
     demo_window.cpp \
     detailed.cpp \
     email.cpp \
@@ -26,6 +29,8 @@ SOURCES += \
     worker.cpp
 
 HEADERS += \
+    calendar.h \
+    customcalendar.h \
     demo_window.h \
     detailed.h \
     email.h \
@@ -41,6 +46,7 @@ HEADERS += \
     worker.h
 
 FORMS += \
+    calendar.ui \
     demo_window.ui \
     detailed.ui \
     feedback_window.ui \
@@ -61,4 +67,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 RESOURCES += \
     res.qrc
 
-DISTFILES +=
+DISTFILES += \
+    images/green.png \
+    images/red.png

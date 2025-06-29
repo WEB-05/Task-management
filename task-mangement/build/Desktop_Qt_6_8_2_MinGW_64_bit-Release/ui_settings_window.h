@@ -54,6 +54,7 @@ public:
     QPushButton *pushButton_10;
     QPushButton *pushButton_11;
     QPushButton *pushButton_12;
+    QPushButton *pushButton_13;
 
     void setupUi(QWidget *Settings_Window)
     {
@@ -79,7 +80,7 @@ public:
 "    }"));
         pushButton = new QPushButton(Settings_Window);
         pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(0, 0, 181, 131));
+        pushButton->setGeometry(QRect(0, 0, 181, 100));
         pushButton->setStyleSheet(QString::fromUtf8("QPushButton \n"
 "{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;\n"
 "\n"
@@ -94,7 +95,7 @@ public:
 "    }"));
         pushButton_2 = new QPushButton(Settings_Window);
         pushButton_2->setObjectName("pushButton_2");
-        pushButton_2->setGeometry(QRect(0, 130, 181, 131));
+        pushButton_2->setGeometry(QRect(0, 200, 181, 100));
         pushButton_2->setStyleSheet(QString::fromUtf8("QPushButton \n"
 "{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;\n"
 "\n"
@@ -109,7 +110,7 @@ public:
 "    }"));
         pushButton_3 = new QPushButton(Settings_Window);
         pushButton_3->setObjectName("pushButton_3");
-        pushButton_3->setGeometry(QRect(0, 260, 181, 131));
+        pushButton_3->setGeometry(QRect(0, 300, 181, 100));
         pushButton_3->setStyleSheet(QString::fromUtf8("QPushButton \n"
 "{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;\n"
 "\n"
@@ -124,7 +125,7 @@ public:
 "    }"));
         pushButton_4 = new QPushButton(Settings_Window);
         pushButton_4->setObjectName("pushButton_4");
-        pushButton_4->setGeometry(QRect(0, 390, 181, 131));
+        pushButton_4->setGeometry(QRect(0, 400, 181, 100));
         pushButton_4->setStyleSheet(QString::fromUtf8("QPushButton \n"
 "{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;\n"
 "\n"
@@ -143,7 +144,7 @@ public:
         pushButton_4->setAutoDefault(false);
         pushButton_5 = new QPushButton(Settings_Window);
         pushButton_5->setObjectName("pushButton_5");
-        pushButton_5->setGeometry(QRect(0, 520, 181, 71));
+        pushButton_5->setGeometry(QRect(0, 500, 181, 91));
         pushButton_5->setStyleSheet(QString::fromUtf8("QPushButton \n"
 "{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;\n"
 "\n"
@@ -524,6 +525,21 @@ public:
 "        background-color: #1976D2;\n"
 "        color: white;\n"
 "    }"));
+        pushButton_13 = new QPushButton(Settings_Window);
+        pushButton_13->setObjectName("pushButton_13");
+        pushButton_13->setGeometry(QRect(0, 100, 181, 100));
+        pushButton_13->setStyleSheet(QString::fromUtf8("QPushButton \n"
+"{ border-image: url(:/images/button.png) 0 0 0 0 stretch stretch;\n"
+"\n"
+"color:rgb(255, 243, 181);\n"
+"font: 25pt \"FZYaoTi\";\n"
+"}\n"
+"    QPushButton:hover {\n"
+"        color: black;\n"
+"    }\n"
+"    QPushButton:pressed {\n"
+"        color: rgb(255, 19, 133);\n"
+"    }"));
 
         retranslateUi(Settings_Window);
 
@@ -568,6 +584,7 @@ public:
         pushButton_10->setText(QCoreApplication::translate("Settings_Window", "\347\241\256\350\256\244\344\277\256\346\224\271", nullptr));
         pushButton_11->setText(QCoreApplication::translate("Settings_Window", "\346\230\276\347\244\272\345\257\206\347\240\201", nullptr));
         pushButton_12->setText(QCoreApplication::translate("Settings_Window", "\346\230\276\347\244\272\345\257\206\347\240\201", nullptr));
+        pushButton_13->setText(QCoreApplication::translate("Settings_Window", "\346\227\245\345\216\206\346\250\241\345\274\217", nullptr));
     } // retranslateUi
 
 };

@@ -5,5 +5,8 @@
         <file>sound/alarm.wav</file>
         <file>images/button.png</file>
         <file>images/to_do_list_fzl_icon.ico</file>
+        <file>images/blue.png</file>
+        <file>images/green.png</file>
+        <file>images/red.png</file>
     </qresource>
 </RCC>

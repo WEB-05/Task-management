@@ -1,3 +1,5 @@
+release/calendar.o
+release/customcalendar.o
 release/demo_window.o
 release/detailed.o
 release/email.o
@@ -13,6 +15,8 @@ release/widget.o
 release/fun.o
 release/worker.o
 release/qrc_res.o
+release/moc_calendar.o
+release/moc_customcalendar.o
 release/moc_demo_window.o
 release/moc_detailed.o
 release/moc_feedback_window.o

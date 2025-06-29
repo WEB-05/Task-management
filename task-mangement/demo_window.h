@@ -1,6 +1,7 @@
 #ifndef DEMO_WINDOW_H
 #define DEMO_WINDOW_H
-#include <fun.h>
+#include "fun.h"
+#include <QDate>
 
 #include <QWidget>
 
@@ -32,6 +33,7 @@ signals:
     void goto_setnew();
     void goto_feedback();
     void go_exit();
+    void go_calendar();
 
 private slots:
     void on_pushButton_2_clicked();
@@ -63,8 +65,11 @@ private slots:
 
     void on_pushButton_7_clicked();
 
+    void on_pushButton_8_clicked();
+
 public:
     void init(int way);
+    void go_date(QDate date);
 };
 
 #endif // DEMO_WINDOW_H

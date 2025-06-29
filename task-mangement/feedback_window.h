@@ -27,6 +27,7 @@ signals:
     void goto_setnew();
     void goto_settings();
     void go_exit();
+    void go_calendar();
 
 private slots:
     void on_pushButton_clicked();
@@ -35,6 +36,8 @@ private slots:
     void on_pushButton_5_clicked();
 
     void on_pushButton_3_clicked();
+
+    void on_pushButton_6_clicked();
 
 public:
     void init();

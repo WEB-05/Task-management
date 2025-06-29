@@ -449,3 +449,11 @@ void SetNew_Window::on_pushButton_2_clicked()
     if(!question(this,q))return;
     reset_page();
 }
+
+void SetNew_Window::on_pushButton_6_clicked()
+{
+    QString q="任务尚未保存，是否退出？";
+    if(!question(this,q))return;
+    emit go_calendar();
+}
+

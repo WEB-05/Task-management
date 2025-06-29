@@ -27,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setnewPage = new SetNew_Window(this);
     settingsPage = new Settings_Window(this);
     feedbackPage = new Feedback_Window(this);
+    calendarPage=new Calendar(this);
 
 
     //编写槽函数连接
@@ -35,30 +36,44 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(settingsPage,&Settings_Window::goto_setnew,this,&MainWindow::goto_setnew);
     connect(settingsPage,&Settings_Window::goto_feedback,this,&MainWindow::goto_feedback);
     connect(settingsPage,&Settings_Window::go_exit,this,&MainWindow::go_exit);
+    connect(settingsPage,&Settings_Window::go_calendar,this,&MainWindow::goto_calendar);
+
 
     //demoPage的槽函数连接
     connect(demoPage,&Demo_Window::goto_setnew,this,&MainWindow::goto_setnew);
     connect(demoPage,&Demo_Window::goto_feedback,this,&MainWindow::goto_feedback);
     connect(demoPage,&Demo_Window::goto_settings,this,&MainWindow::goto_settings);
     connect(demoPage,&Demo_Window::go_exit,this,&MainWindow::go_exit);
+    connect(demoPage,&Demo_Window::go_calendar,this,&MainWindow::goto_calendar);
 
     //setnewPage的槽函数连接
     connect(setnewPage,&SetNew_Window::goto_demo,this,&MainWindow::goto_demo);
     connect(setnewPage,&SetNew_Window::goto_feedback,this,&MainWindow::goto_feedback);
     connect(setnewPage,&SetNew_Window::goto_settings,this,&MainWindow::goto_settings);
     connect(setnewPage,&SetNew_Window::go_exit,this,&MainWindow::go_exit);
+    connect(setnewPage,&SetNew_Window::go_calendar,this,&MainWindow::goto_calendar);
 
     //feedbackPage的槽函数连接
     connect(feedbackPage,&Feedback_Window::goto_demo,this,&MainWindow::goto_demo);
     connect(feedbackPage,&Feedback_Window::goto_setnew,this,&MainWindow::goto_setnew);
     connect(feedbackPage,&Feedback_Window::goto_settings,this,&MainWindow::goto_settings);
     connect(feedbackPage,&Feedback_Window::go_exit,this,&MainWindow::go_exit);
+    connect(feedbackPage,&Feedback_Window::go_calendar,this,&MainWindow::goto_calendar);
+
+    //calendarPage的槽函数连接
+    connect(calendarPage,&Calendar::goto_demo,this,&MainWindow::goto_demo);
+    connect(calendarPage,&Calendar::goto_setnew,this,&MainWindow::goto_setnew);
+    connect(calendarPage,&Calendar::goto_settings,this,&MainWindow::goto_settings);
+    connect(calendarPage,&Calendar::go_exit,this,&MainWindow::go_exit);
+    connect(calendarPage,&Calendar::goto_feedback,this,&MainWindow::goto_feedback);
+    connect(calendarPage,&Calendar::goto_date,this,&MainWindow::goto_date);
 
     // 添加页面到 stackedWidget
     stackedWidget->addWidget(demoPage);
     stackedWidget->addWidget(setnewPage);
     stackedWidget->addWidget(settingsPage);
     stackedWidget->addWidget(feedbackPage);
+    stackedWidget->addWidget(calendarPage);
 
 
     // 默认显示demo界面
@@ -75,6 +90,7 @@ MainWindow::~MainWindow() {
     delete setnewPage;
     delete feedbackPage;
     delete settingsPage;
+    delete calendarPage;
     delete stackedWidget;
     delete ui;  // 自动清理 Designer UI
 }
@@ -105,3 +121,12 @@ void MainWindow::go_exit(){
     this->close();
 }
 
+void MainWindow::goto_calendar(){
+    calendarPage->init();
+    stackedWidget->setCurrentWidget(calendarPage);
+}
+
+void MainWindow::goto_date(QDate date){
+    demoPage->go_date(date);
+    stackedWidget->setCurrentWidget(demoPage);
+}
