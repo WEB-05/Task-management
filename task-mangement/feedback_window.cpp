@@ -58,7 +58,7 @@ bool Feedback_Window::check_first(){
 }
 
 bool Feedback_Window::check_second(){
-    int type1=0,type2=0,type3=0,type4=0,type5=0;
+    int type1=0,type2=0,type3=0,type4=0,type5=0,type6=0;
     for(int i=0;i<task::task_number_vec;i++){
         if(tasks[i].valid){
             if(tasks[i].get_mode()==COMPLETE){
@@ -88,6 +88,11 @@ bool Feedback_Window::check_second(){
                         type5++;
                         break;
                     }
+                    case OTHER:
+                    {
+                        type6++;
+                        break;
+                    }
                 }
             }
         }
@@ -98,6 +103,7 @@ bool Feedback_Window::check_second(){
     if(type3) all++;
     if(type4) all++;
     if(type5) all++;
+    if(type6) all++;
     if(all>=3) return true;
     return false;
 }

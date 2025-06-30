@@ -292,7 +292,12 @@ public:
         label_6->setGeometry(QRect(10, 368, 54, 16));
         spinBox = new QSpinBox(Detailed);
         spinBox->setObjectName("spinBox");
-        spinBox->setGeometry(QRect(80, 360, 51, 31));
+        spinBox->setGeometry(QRect(70, 360, 41, 41));
+        QSizePolicy sizePolicy(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(spinBox->sizePolicy().hasHeightForWidth());
+        spinBox->setSizePolicy(sizePolicy);
         spinBox->setMaximum(10);
         pushButton_5 = new QPushButton(Detailed);
         pushButton_5->setObjectName("pushButton_5");
@@ -421,7 +426,7 @@ public:
         dateEdit_2->setObjectName("dateEdit_2");
         dateEdit_2->setGeometry(QRect(640, 290, 111, 41));
         dateEdit_2->setAlignment(Qt::AlignmentFlag::AlignCenter);
-        dateEdit_2->setDateTime(QDateTime(QDate(2025, 1, 1), QTime(0, 0, 0)));
+        dateEdit_2->setDateTime(QDateTime(QDate(2025, 1, 1), QTime(16, 0, 0)));
         dateEdit_2->setDate(QDate(2025, 1, 1));
         add_alarm_time = new QPushButton(Detailed);
         add_alarm_time->setObjectName("add_alarm_time");
@@ -462,8 +467,8 @@ public:
         timeEdit_2->setProperty("showGroupSeparator", QVariant(true));
         timeEdit_2->setDateTime(QDateTime(QDate(2025, 1, 1), QTime(0, 0, 0)));
         timeEdit_2->setDate(QDate(2025, 1, 1));
-        timeEdit_2->setMaximumDateTime(QDateTime(QDate(2040, 1, 1), QTime(23, 59, 59)));
-        timeEdit_2->setMinimumDateTime(QDateTime(QDate(2020, 1, 1), QTime(0, 0, 0)));
+        timeEdit_2->setMaximumDateTime(QDateTime(QDate(2040, 1, 1), QTime(15, 59, 59)));
+        timeEdit_2->setMinimumDateTime(QDateTime(QDate(2020, 1, 1), QTime(16, 0, 0)));
         timeEdit_2->setMaximumDate(QDate(2040, 1, 1));
         timeEdit_2->setMinimumDate(QDate(2020, 1, 1));
         timeEdit_2->setCurrentSection(QDateTimeEdit::Section::MinuteSection);
